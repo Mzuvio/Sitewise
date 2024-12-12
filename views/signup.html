@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitewise | Signup</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <!-- ION-ICONS JS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- FLATICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flaticon@5.5.2/font/flaticon.css"
+    />
+  </head>
+  <body class="">
+    <!-- BACK BUTTON -->
+    <div class="back-top" id="back-top-btn">
+      <a href="#"><ion-icon name="chevron-up-outline"></ion-icon></a>
+    </div>
+    <!-- HEADER -->
+    <header class="not-home-pg header wrapper">
+      <div class="container">
+        <nav class="nav-menu">
+          <a href="index.html" class="logo"
+            >Site<span class="highlight">wise</span></a
+          >
+          <ul class="menu-link">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li>
+              <div class="whishlist-icon">
+                <ion-icon name="heart-outline"></ion-icon>
+                <span class="whishlist-count">0</span>
+              </div>
+            </li>
+            <li>
+              <div class="cart-icon">
+                <a href="#"><ion-icon name="cart-outline"></ion-icon></a>
+                <span class="item-count">0</span>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="account"
+                ><ion-icon name="person-outline"></ion-icon
+              ></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- HEADER END -->
+    <!-- WISHLIST -->
+    <div class="wishlist-container">
+      <div class="wishlist-header">
+        <h2 class="wishlist-title">
+          Wishlist(<span class="count-wishlist">0</span>)
+        </h2>
+        <span class="icon btn-cancel">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </div>
+
+      <div class="wishlist-items"></div>
+
+      <div class="shopping-cart-buttons">
+        <a href="#" class="btn btn-checkout continue">Continue shopping</a>
+      </div>
+    </div>
+    <!-- END WISHLIST-->
+
+    <!-- SHORPPING CART  -->
+    <div class="shopping-cart">
+      <div class="shopping-cart-header">
+        <h2 class="shopping-cart-title">Shopping Cart</h2>
+        <span class="icon btn-cancel">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </div>
+      <div class="cart-items"></div>
+
+      <div class="cart-summary">
+        <p class="cart-total" id="overroll-total"></p>
+      </div>
+      <div class="shopping-cart-buttons">
+        <a href="#" class="btn btn-checkout">Checkout</a>
+      </div>
+    </div>
+    <!-- END SHOPPING CART -->
+    <!-- LOGIN FORM -->
+    <div class="form-login account-form" id="login">
+      <div class="form-header">
+        <span class="form-title">Login</span>
+        <div class="form-close">
+          <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+          </span>
+        </div>
+      </div>
+
+      <form action="#" method="POST">
+        <div class="form-control">
+          <input type="email" name="email" placeholder="email address *" />
+        </div>
+
+        <div class="form-control">
+          <input type="password" name="password" placeholder="password *" />
+        </div>
+
+        <div class="form-options">
+          <label for="checkbox" class="label-remember">
+            <input type="checkbox" name="remember" />
+            Remember me
+          </label>
+          <a href="password.html" class="link-forgot">Lost password?</a>
+        </div>
+
+        <input type="submit" value="Log in" name="login" class="btn-submit" />
+
+        <div class="form-switch">
+          <span>No account yet?</span>
+          <a href="signup.html" class="link-create">Create Account</a>
+        </div>
+      </form>
+    </div>
+    <!-- END LOGIN FORM -->
+
+    <!-- REGISTER FORM -->
+    <section class="register-pg">
+      <div class="form-register account-form" id="register">
+        <div class="form-header">
+          <span class="form-title">Register</span>
+        </div>
+        <form action="#" method="POST">
+          <div class="form-control">
+            <input type="text" name="fullname" placeholder="fullname *" />
+          </div>
+
+          <div class="form-control">
+            <input type="email" name="email" placeholder="email address *" />
+          </div>
+
+          <div class="form-control">
+            <input type="password" name="password" placeholder="password *" />
+          </div>
+
+          <div class="form-options">
+            <label for="checkbox" class="label-remember">
+              <input type="checkbox" name="remember" />
+              Terms & Conditions
+            </label>
+          </div>
+
+          <input
+            type="submit"
+            value="Register"
+            name="register"
+            class="btn-submit"
+          />
+
+          <div class="form-switch">
+            <span>Already have an account?</span>
+            <a href="login.html" class="link-create">Login</a>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- END REGISTER FORM -->
+    <!-- FOOTER SECTION -->
+    <footer class="footer-wrapper shop-pg" id="footer-section">
+      <ul class="footer-items">
+        <li class="footer-item">
+          <a href="#" class="footer-logo footer-header"
+            >SITE<span class="highlight">WISE</span></a
+          >
+          <span class="footer-address"
+            >1234 Chair Avenue, Furniture City, Country</span
+          >
+          <span class="footer-email">sitewise@wise.com</span>
+          <span class="footer-phone">+27 11 234 5678</span>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+          </div>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Company</h3>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="blog.html" class="footer-link">Blog</a>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Shop</h3>
+          <a href="#" class="footer-link">New Arrivals</a>
+          <a href="#" class="footer-link">Best Sellers</a>
+          <a href="#" class="footer-link">Discounts</a>
+          <a href="#" class="footer-link">Sales</a>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Help</h3>
+          <a href="#" class="footer-link">Customer Service</a>
+          <a href="#" class="footer-link">My Account</a>
+          <a href="#" class="footer-link">Find a Store</a>
+          <a href="#" class="footer-link">Legal & Privacy</a>
+          <a href="#" class="footer-link">Contact</a>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Opening Hours</h3>
+          <a href="#" class="footer-link">Monday - Friday: 9 AM - 5 PM</a>
+          <a href="#" class="footer-link">Saturday: 10 AM - 4 PM</a>
+          <a href="#" class="footer-link">Sunday: Closed</a>
+        </li>
+      </ul>
+    </footer>
+    <!-- END FOOTER SECTION -->
+    <div class="footer-bottom shop-pg">
+      <span class="footer-year"> &copy;2024 SITEWISE</span>
+      <span class="footer-language"
+        >Language <ion-icon name="chevron-up-outline"></ion-icon
+      ></span>
+    </div>
+
+    <!-- JS -->
+    <script src="../public/js/main.js"></script>
+  </body>
+</html>

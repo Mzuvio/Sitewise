@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitewise | About</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <!-- ION-ICONS JS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- FLATICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flaticon@5.5.2/font/flaticon.css"
+    />
+  </head>
+  <body class="">
+    <!-- BACK BUTTON -->
+    <div class="back-top" id="back-top-btn">
+      <a href="#"><ion-icon name="chevron-up-outline"></ion-icon></a>
+    </div>
+    <div class="discount">
+      <p class="discount-content">
+        Basement Bargains: Enjoy up to 70% off selected furniture & homeware
+        pieces while stocks last!
+      </p>
+      <a href="#">Shop Now</a>
+    </div>
+    <!-- HEADER -->
+    <header class="home-pg header wrapper">
+      <div class="container">
+        <nav class="nav-menu">
+          <a href="index.html" class="logo"
+            >Site<span class="highlight">wise</span></a
+          >
+          <ul class="menu-link">
+            <li><a href="index.html" class="link">Home</a></li>
+            <li><a href="shop.html" class="link">Shop</a></li>
+            <li class="active">
+              <a href="about.html" class="link">About Us</a>
+            </li>
+            <li><a href="blog.html" class="link">Blog</a></li>
+            <li><a href="contact.html" class="link">contact</a></li>
+            <li>
+              <div class="whishlist-icon">
+                <ion-icon name="heart-outline"></ion-icon>
+                <span class="whishlist-count">0</span>
+              </div>
+            </li>
+            <li>
+              <div class="cart-icon">
+                <a href="#"><ion-icon name="cart-outline"></ion-icon></a>
+                <span class="item-count">0</span>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="account"
+                ><ion-icon name="person-outline"></ion-icon
+              ></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- WISHLIST -->
+    <div class="wishlist-container">
+      <div class="wishlist-header">
+        <h2 class="wishlist-title">
+          Wishlist(<span class="count-wishlist">0</span>)
+        </h2>
+        <span class="icon btn-cancel">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </div>
+
+      <div class="wishlist-items"></div>
+
+      <div class="shopping-cart-buttons">
+        <a href="#" class="btn btn-checkout continue">Continue shopping</a>
+      </div>
+    </div>
+    <!-- END WISHLIST-->
+    <div class="shopping-cart">
+      <div class="shopping-cart-header">
+        <h2 class="shopping-cart-title">Shopping Cart</h2>
+        <span class="icon btn-cancel">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </div>
+      <div class="cart-items"></div>
+
+      <div class="cart-summary">
+        <p class="cart-total" id="overroll-total"></p>
+      </div>
+      <div class="shopping-cart-buttons">
+        <a href="#" class="btn btn-checkout">Checkout</a>
+      </div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="form-login account-form" id="login">
+      <div class="form-header">
+        <span class="form-title">Login</span>
+        <div class="form-close">
+          <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+          </span>
+        </div>
+      </div>
+
+      <form action="#" method="POST">
+        <div class="form-control">
+          <input type="email" name="email" placeholder="email address *" />
+        </div>
+
+        <div class="form-control">
+          <input type="password" name="password" placeholder="password *" />
+        </div>
+
+        <div class="form-options">
+          <label for="checkbox" class="label-remember">
+            <input type="checkbox" name="remember" />
+            Remember me
+          </label>
+          <a href="password.html" class="link-forgot">Lost password?</a>
+        </div>
+
+        <input type="submit" value="Log in" name="login" class="btn-submit" />
+
+        <div class="form-switch">
+          <span>No account yet?</span>
+          <a href="signup.html" class="link-create">Create Account</a>
+        </div>
+      </form>
+    </div>
+    <!-- END LOGIN FORM -->
+    <!-- BREADCRUMB -->
+    <div class="shop-pg navigation-container" id="breadcrumb">
+      <h2 class="page-header">About Us</h2>
+      <div class="navigation-links">
+        <a href="index.html" class="home-link">Home</a>
+        <span>></span>
+        <a href="#" class="current-page-link">About Us</a>
+      </div>
+    </div>
+    <!-- END BREADCRUMB -->
+    <!-- MAIN SECTION -->
+    <section class="about-pg container">
+      <div class="about-section">
+        <div class="image-card">
+          <img
+            src="../public/images/1.jpg"
+            alt="Luxury Chairs"
+            class="left-image"
+          />
+        </div>
+        <div class="right-cl">
+          <h3 class="about-title">About Us</h3>
+          <h2 class="about-subheading">
+            Discover premium comfort with our exclusive luxury chairs.
+          </h2>
+
+          <div class="about-info">
+            <div class="about-text">
+              <p class="about-paragraph">
+                At Luxury Chairs, we offer a curated selection of the finest
+                armchairs, recliners, and loungers, designed to bring comfort
+                and sophistication to your home. Our collection is crafted with
+                the highest quality materials, ensuring that each piece provides
+                both style and durability.
+              </p>
+              <p class="about-paragraph">
+                Whether you're looking to update your office space or add a
+                touch of elegance to your living room, our range of luxury
+                chairs offers something for every taste. Experience ultimate
+                comfort and timeless design with our carefully selected pieces.
+              </p>
+            </div>
+
+            <a href="contact.html" class="contact-btn">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-services container about-pg" id="service">
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-icon">
+            <div class="icon">
+              <img src="../public/images/icons/shipping.png" alt="" />
+            </div>
+          </div>
+          <h4 class="service-title">Free Shipping</h4>
+          <p class="service-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque
+            culpa, beatae esse rem officiis.
+          </p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <div class="icon">
+              <img src="../public/images/icons/chair.png" alt="" />
+            </div>
+          </div>
+          <h4 class="service-title">Variety of Chairs</h4>
+          <p class="service-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque
+            culpa, beatae esse rem officiis.
+          </p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <div class="icon">
+              <img src="../public/images/icons/restock.png" alt="" />
+            </div>
+          </div>
+          <h4 class="service-title">Easy Returns</h4>
+          <p class="service-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque
+            culpa, beatae esse rem officiis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop-info">
+      <div class="content-wrapper">
+        <div class="text-slider">
+          <h3 class="slider-heading">Explore Our Collection</h3>
+          <p class="slider-description">
+            Discover a wide variety of luxury chairs, from classic designs to
+            contemporary styles. Each piece is crafted with the highest quality
+            materials to provide both comfort and elegance for your home or
+            office.
+          </p>
+        </div>
+        <div class="slider-controls">
+          <div class="slider-control active" data-index="0"></div>
+          <div class="slider-control" data-index="1"></div>
+          <div class="slider-control" data-index="2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter container" id="newsletter-wrapper">
+      <h2 class="newsletter-title">Don't miss the chance to get 40% off</h2>
+      <p class="newsletter-description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+      <form action="#" method="POST">
+        <div class="controller-container">
+          <div class="form-controller">
+            <input type="email" name="e-mail" placeholder="Your email adress" />
+          </div>
+          <div class="form-controller">
+            <input
+              type="submit"
+              name="submit"
+              class="newsletter-btn"
+              value="Join"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- END NEWSLETTER -->
+
+    <!-- FOOTER SECTION -->
+    <footer class="footer-wrapper shop-pg" id="footer-section">
+      <ul class="footer-items">
+        <li class="footer-item">
+          <a href="#" class="footer-logo footer-header"
+            >SITE<span class="highlight">WISE</span></a
+          >
+          <span class="footer-address"
+            >1234 Chair Avenue, Furniture City, Country</span
+          >
+          <span class="footer-email">sitewise@wise.com</span>
+          <span class="footer-phone">+27 11 234 5678</span>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#" class="social-icon">
+              <ion-icon name="logo-pinterest"></ion-icon>
+            </a>
+          </div>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Company</h3>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="blog.html" class="footer-link">Blog</a>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Shop</h3>
+          <a href="#" class="footer-link">New Arrivals</a>
+          <a href="#" class="footer-link">Best Sellers</a>
+          <a href="#" class="footer-link">Discounts</a>
+          <a href="#" class="footer-link">Sales</a>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Help</h3>
+          <a href="#" class="footer-link">Customer Service</a>
+          <a href="#" class="footer-link">My Account</a>
+          <a href="#" class="footer-link">Find a Store</a>
+          <a href="#" class="footer-link">Legal & Privacy</a>
+          <a href="#" class="footer-link">Contact</a>
+        </li>
+        <li class="footer-item">
+          <h3 class="footer-header">Opening Hours</h3>
+          <a href="#" class="footer-link">Monday - Friday: 9 AM - 5 PM</a>
+          <a href="#" class="footer-link">Saturday: 10 AM - 4 PM</a>
+          <a href="#" class="footer-link">Sunday: Closed</a>
+        </li>
+      </ul>
+    </footer>
+    <!-- END FOOTER SECTION -->
+    <div class="footer-bottom shop-pg">
+      <span class="footer-year"> &copy;2024 SITEWISE</span>
+      <span class="footer-language"
+        >Language <ion-icon name="chevron-up-outline"></ion-icon
+      ></span>
+    </div>
+
+    <!-- JS -->
+    <script src="../public/js/main.js" defer></script>
+  </body>
+</html>
