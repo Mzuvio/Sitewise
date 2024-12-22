@@ -39,10 +39,10 @@ if (menuCard) {
   menuCard.addEventListener("click", () => {
     if (menu.classList.contains("active")) {
       menu.classList.remove("active");
-      menuIcon.src = "../public/images/menu.png"; 
+      menuIcon.src = "public/images/menu.png"; 
     } else {
       menu.classList.add("active");
-      menuIcon.src = "../public/images/close.png";
+      menuIcon.src = "public/images/close.png";
       body.classList.remove("show-wishlist");
       body.classList.remove("show-cart");
     }
@@ -70,14 +70,14 @@ if (showWishList) {
 if (closeCart) {
   closeCart.addEventListener("click", () => {
     body.classList.remove("show-cart");
-    menuIcon.src = "../public/images/menu.png"; 
+    menuIcon.src = "public/images/menu.png"; 
   });
 }
 
 if (closeWishlist) {
   closeWishlist.addEventListener("click", () => {
     body.classList.remove("show-wishlist");
-    menuIcon.src = "../public/images/menu.png"; 
+    menuIcon.src = "public/images/menu.png"; 
   });
 }
 
@@ -95,7 +95,7 @@ if (showLoginForm) {
 if (closeLoginForm) {
   closeLoginForm.addEventListener("click", () => {
     body.classList.toggle("show-loginform");
-    menuIcon.src = "../public/images/menu.png"; 
+    menuIcon.src = "public/images/menu.png"; 
   });
 }
 
