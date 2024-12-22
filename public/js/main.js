@@ -922,7 +922,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    const response = await fetch("/data/products.json");
+    const response = await fetch("data/products.json");
     listProducts = await response.json();
 
     if (currentPage.includes("index")) {
