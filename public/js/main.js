@@ -29,15 +29,32 @@ const showCart = document.querySelector(".cart-icon");
 const body = document.querySelector("body");
 const closeCart = document.querySelector(".shopping-cart .btn-cancel");
 const closeWishlist = document.querySelector(".wishlist-container .btn-cancel");
-
+const menuCard = document.querySelector(".nav-menu .image-card");
+const menuIcon = document.querySelector("#menu-icon");
+const menu = document.querySelector(".menu-link");
 const closeLoginForm = document.querySelector(".form-close");
 const showLoginForm = document.querySelector(".account");
+
+if (menuCard) {
+  menuCard.addEventListener("click", () => {
+    if (menu.classList.contains("active")) {
+      menu.classList.remove("active");
+      menuIcon.src = "../public/images/menu.png"; 
+    } else {
+      menu.classList.add("active");
+      menuIcon.src = "../public/images/close.png";
+      body.classList.remove("show-wishlist");
+      body.classList.remove("show-cart");
+    }
+  });
+}
 
 if (showCart) {
   showCart.addEventListener("click", (e) => {
     e.preventDefault();
     body.classList.add("show-cart");
     body.classList.remove("show-wishlist");
+    menu.classList.remove("active");
   });
 }
 
@@ -46,18 +63,21 @@ if (showWishList) {
     e.preventDefault();
     body.classList.add("show-wishlist");
     body.classList.remove("show-cart");
+    menu.classList.remove("active");
   });
 }
 
 if (closeCart) {
   closeCart.addEventListener("click", () => {
     body.classList.remove("show-cart");
+    menuIcon.src = "../public/images/menu.png"; 
   });
 }
 
 if (closeWishlist) {
   closeWishlist.addEventListener("click", () => {
     body.classList.remove("show-wishlist");
+    menuIcon.src = "../public/images/menu.png"; 
   });
 }
 
@@ -65,12 +85,17 @@ if (showLoginForm) {
   showLoginForm.addEventListener("click", (e) => {
     e.preventDefault();
     body.classList.toggle("show-loginform");
+    body.classList.remove("show-wishlist");
+    body.classList.remove("show-cart");
+    menu.classList.remove("active");
+    
   });
 }
 
 if (closeLoginForm) {
   closeLoginForm.addEventListener("click", () => {
     body.classList.toggle("show-loginform");
+    menuIcon.src = "../public/images/menu.png"; 
   });
 }
 
@@ -542,12 +567,34 @@ const renderChairsForHomePage = (listProducts) => {
       }
     });
 
+    window.addEventListener("click", (e) => {
+      if (e.target === productDisplay) {
+        if (productDisplay.classList.contains("show")) {
+          productDisplay.classList.remove("show");
+          if (whishlistHeart.name === "heart") {
+            whishlistHeart.name = "heart-outline";
+            whishlistHeart.style.color = "#2d2a32";
+          }
+          productQuantity.textContent = "1";
+        }
+      }
+    });
+
     function showPopup() {
       popupWrapper.classList.add("show");
     }
     function hidePopup() {
       popupWrapper.classList.remove("show");
     }
+
+    window.addEventListener("click", (e) => {
+      if (e.target === popupWrapper) {
+        if (popupWrapper.classList.contains("show")) {
+          popupWrapper.classList.remove("show");
+        }
+      }
+    });
+
     closePopupButton.addEventListener("click", hidePopup);
     cartBtn.forEach((btn) => {
       btn.addEventListener("click", (e) => {
@@ -762,12 +809,34 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
       }
     });
 
+    window.addEventListener("click", (e) => {
+      if (e.target === productDisplay) {
+        if (productDisplay.classList.contains("show")) {
+          productDisplay.classList.remove("show");
+          if (whishlistHeart.name === "heart") {
+            whishlistHeart.name = "heart-outline";
+            whishlistHeart.style.color = "#2d2a32";
+          }
+          productQuantity.textContent = "1";
+        }
+      }
+    });
+
     function showPopup() {
       popupWrapper.classList.add("show");
     }
     function hidePopup() {
       popupWrapper.classList.remove("show");
     }
+
+    window.addEventListener("click", (e) => {
+      if (e.target === popupWrapper) {
+        if (popupWrapper.classList.contains("show")) {
+          popupWrapper.classList.remove("show");
+        }
+      }
+    });
+
     closePopupButton.addEventListener("click", hidePopup);
     cartBtn.forEach((btn) => {
       btn.addEventListener("click", (e) => {
