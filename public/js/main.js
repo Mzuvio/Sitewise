@@ -29,8 +29,8 @@ const showCart = document.querySelector(".cart-icon");
 const body = document.querySelector("body");
 const closeCart = document.querySelector(".shopping-cart .btn-cancel");
 const closeWishlist = document.querySelector(".wishlist-container .btn-cancel");
-const menuCard = document.querySelector(".nav-menu .image-card");
-const menuIcon = document.querySelector("#menu-icon");
+const menuCard = document.querySelector(".nav-menu .menu-icon");
+const menuIcon = document.querySelector(".menu-icon ion-icon");
 const menu = document.querySelector(".menu-link");
 const closeLoginForm = document.querySelector(".form-close");
 const showLoginForm = document.querySelector(".account");
@@ -39,10 +39,10 @@ if (menuCard) {
   menuCard.addEventListener("click", () => {
     if (menu.classList.contains("active")) {
       menu.classList.remove("active");
-      menuIcon.src = "public/images/menu.png"; 
+      menuIcon.name = "menu-outline"; 
     } else {
       menu.classList.add("active");
-      menuIcon.src = "public/images/close.png";
+      menuIcon.name = "close-outline";
       body.classList.remove("show-wishlist");
       body.classList.remove("show-cart");
     }
@@ -55,6 +55,7 @@ if (showCart) {
     body.classList.add("show-cart");
     body.classList.remove("show-wishlist");
     menu.classList.remove("active");
+    menuIcon.name = "menu-outline"; 
   });
 }
 
@@ -64,20 +65,21 @@ if (showWishList) {
     body.classList.add("show-wishlist");
     body.classList.remove("show-cart");
     menu.classList.remove("active");
+    menuIcon.name = "menu-outline"; 
   });
 }
 
 if (closeCart) {
   closeCart.addEventListener("click", () => {
     body.classList.remove("show-cart");
-    menuIcon.src = "public/images/menu.png"; 
+    menuIcon.name = "menu-outline"; 
   });
 }
 
 if (closeWishlist) {
   closeWishlist.addEventListener("click", () => {
     body.classList.remove("show-wishlist");
-    menuIcon.src = "public/images/menu.png"; 
+    menuIcon.name = "menu-outline"; 
   });
 }
 
@@ -88,14 +90,14 @@ if (showLoginForm) {
     body.classList.remove("show-wishlist");
     body.classList.remove("show-cart");
     menu.classList.remove("active");
-    
+    menuIcon.name = "menu-outline"; 
   });
 }
 
 if (closeLoginForm) {
   closeLoginForm.addEventListener("click", () => {
     body.classList.toggle("show-loginform");
-    menuIcon.src = "public/images/menu.png"; 
+    menuIcon.name = "menu-outline"; 
   });
 }
 
