@@ -39,7 +39,7 @@ if (menuCard) {
   menuCard.addEventListener("click", () => {
     if (menu.classList.contains("active")) {
       menu.classList.remove("active");
-      menuIcon.name = "menu-outline"; 
+      menuIcon.name = "menu-outline";
     } else {
       menu.classList.add("active");
       menuIcon.name = "close-outline";
@@ -55,7 +55,7 @@ if (showCart) {
     body.classList.add("show-cart");
     body.classList.remove("show-wishlist");
     menu.classList.remove("active");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
@@ -65,21 +65,21 @@ if (showWishList) {
     body.classList.add("show-wishlist");
     body.classList.remove("show-cart");
     menu.classList.remove("active");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
 if (closeCart) {
   closeCart.addEventListener("click", () => {
     body.classList.remove("show-cart");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
 if (closeWishlist) {
   closeWishlist.addEventListener("click", () => {
     body.classList.remove("show-wishlist");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
@@ -90,14 +90,14 @@ if (showLoginForm) {
     body.classList.remove("show-wishlist");
     body.classList.remove("show-cart");
     menu.classList.remove("active");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
 if (closeLoginForm) {
   closeLoginForm.addEventListener("click", () => {
     body.classList.toggle("show-loginform");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
@@ -922,8 +922,152 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    const response = await fetch("/data/products.json");
-    listProducts = await response.json();
+    const listProducts = [
+      {
+        id: 1,
+        image: "public/images/chair_1.png",
+        category: "Furniture",
+        name: "Velvet Armchair",
+        basePrice: 4500,
+        price: "R4,500.00",
+        sale: false,
+        categoryType: "Best Seller",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 2,
+        image: "public/images/chair_2.png",
+        category: "Furniture",
+        name: "Leather Recliner",
+        basePrice: 12000,
+        price: "R12,000.00",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 3,
+        image: "public/images/chair_3.png",
+        category: "Furniture",
+        name: "Modern Accent Chair",
+        basePrice: 3500,
+        price: "R3,500.00",
+        sale: false,
+        categoryType: "Best Seller",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 4,
+        image: "public/images/chair_4.png",
+        category: "Furniture",
+        name: "High-Back Executive Chair",
+        basePrice: 6000,
+        price: "R6,000.00",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 5,
+        image: "public/images/chair_5.png",
+        category: "Furniture",
+        name: "Wingback Chair",
+        basePrice: 5500,
+        price: "R5,500.00",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 6,
+        image: "public/images/chair_7.png",
+        category: "Furniture",
+        name: "Antique Wooden Chair",
+        basePrice: 10000,
+        price: "R10,000.00",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 7,
+        image: "public/images/chair_9.png",
+        category: "Furniture",
+        name: "Contemporary Lounge Chair",
+        basePrice: 8000,
+        price: "R8,000.00",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 8,
+        image: "public/images/chair_10.png",
+        category: "Furniture",
+        name: "Fabric Swivel Chair",
+        basePrice: 3750,
+        price: "R3,750.00",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 9,
+        image: "public/images/chair_17.png",
+        category: "Furniture",
+        name: "Classic Rocking Chair",
+        basePrice: 4500,
+        price: "R4,500.00",
+        sale: false,
+        categoryType: "Best Seller",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 10,
+        image: "public/images/chair_18.png",
+        category: "Furniture",
+        name: "Rustic Patio Chair",
+        basePrice: 3000,
+        price: "R3,000.00",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 11,
+        image: "public/images/chair_19.png",
+        category: "Furniture",
+        name: "Ergonomic Office Chair",
+        basePrice: 7000,
+        price: "R7,000.00",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+      {
+        id: 12,
+        image: "public/images/chair_20.png",
+        category: "Furniture",
+        name: "Minimalist Wooden Stool",
+        basePrice: 2000,
+        price: "R2,000.00",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+      },
+    ];
 
     if (currentPage.includes("index")) {
       renderChairsForHomePage(listProducts);
@@ -1030,6 +1174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       startAutoChange();
     }
   } catch (error) {
+    console.log(listProducts);
     console.error("Error during page initialization:", error);
   }
   renderCartProducts(cartItems);
