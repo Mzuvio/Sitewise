@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "/images/chair_1.png",
+    "image": "public/images/chair_1.png",
     "category": "Furniture",
     "name": "Velvet Armchair",
     "basePrice": 4500,

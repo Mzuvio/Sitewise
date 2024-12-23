@@ -426,6 +426,45 @@ img {
   
 }
 
+@media screen and (min-width: 391px) and (max-width: 768px) {
+  .home-pg.header {
+    height: calc(100vh - 85vh);
+  }
+
+  .nav-menu .logo {
+    font-size: 1.125rem;
+  }
+
+  .nav-menu .menu-link {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    position: static;
+    transform: none;
+    background-color: transparent;
+  }
+
+  .nav-menu .menu-link li {
+    padding-inline: 1rem;
+  }
+
+  .menu-link li a {
+    font-size: var(--fs-xsml);
+  }
+
+  .whishlist-icon,
+  .cart-icon {
+    font-size: 1.25rem;
+  }
+
+  .menu-link span.item-count,
+  .menu-link .whishlist-count {
+    font-size: 0.625rem;
+  }
+}
+
+
 /* SHOWCASE SECTION */
 
 .showcase-section {
@@ -2085,6 +2124,135 @@ input::-moz-placeholder {
     color: gray;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .product-collection .product-container {
+    grid-template-columns: repeat(2, minmax(135px, 1fr));
+    gap: 1rem;
+  }
+
+  .product-collection .product-item {
+    width: 135px;
+  }
+
+  .chairs-display .product-item {
+    width: 135px;
+  }
+
+  .product-item .for-sale {
+    background: var(--dark-clr);
+  }
+
+  .product-item .product-image {
+    display: grid;
+    place-content: center;
+  }
+
+  .product-item .product-image {
+    height: 180px;
+  }
+
+  .product-collection .image-card {
+    width: 120px;
+  }
+
+  .product-item .product-name {
+    font-size: 0.75rem;
+    font-weight: var(--fw-medium);
+    color: var(--dark-grey);
+    padding-bottom: 0.5rem;
+  }
+
+  .product-item .product-price {
+    font-size: 0.75rem;
+    padding-bottom: 0.5rem;
+    color: gray;
+  }
+
+  .cart-btn {
+    width: 85%;
+  }
+
+  .product-details .product-favorite {
+    font-size: 1rem;
+    color: var(--text-clr);
+  }
+
+  .item-details .image-card {
+    width: 75%;
+  }
+
+  .item-details .right-side {
+    padding: 1em 0.5rem;
+  }
+
+  .item-details .icon-close {
+    position: absolute;
+    right: 8%;
+    top: 5%;
+    font-size: 1.125rem;
+    color: var(--dark-clr);
+  }
+
+  .right-side .chair-name {
+    font-size: 0.875rem;
+    font-weight: var(--fw-bold);
+  }
+
+  .star-list .star {
+    font-size: var(--fs-xsml);
+  }
+
+  .rating-area .user-reviews {
+    font-size: var(--fs-xsml);
+  }
+
+  .item-details .chair-price {
+    font-size: 0.875rem;
+  }
+
+  .item-details .chair-info {
+    font-size: var(--fs-xsml);
+    color: var(--text-clr);
+  }
+
+  .item-details .button-area {
+    gap: 0.5rem;
+  }
+
+  .quantity-area .decrease,
+  .quantity-area .qantity,
+  .quantity-area .increase {
+    font-size: 0.875rem;
+  }
+
+  .button-area .cart-add {
+    font-size: 0.75rem;
+  }
+
+  .item-details .wishlist-area {
+    gap: 1rem;
+  }
+
+  .item-details .wishlist-area span {
+    font-size: 0.875rem;
+  }
+
+  .item-details .wishlist-area span.icon {
+    font-size: 1rem;
+  }
+
+  .right-side .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .product-info li {
+    font-size: var(--fs-xsml);
+  }
+}
+
 
 /* SALE */
 
