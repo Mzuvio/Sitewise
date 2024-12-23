@@ -925,7 +925,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json");
 
     listProducts = await response.json();
-     
 
     if (currentPage.includes("index")) {
       renderChairsForHomePage(listProducts);
