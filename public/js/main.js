@@ -34,13 +34,13 @@ const menuIcon = document.querySelector(".menu-icon ion-icon");
 const menu = document.querySelector(".menu-link");
 const closeLoginForm = document.querySelector(".form-close");
 const showLoginForm = document.querySelector(".account");
-const checkoutBtn  = document.querySelector('.btn-checkout')
+const checkoutBtn = document.querySelector(".btn-checkout");
 
 if (menuCard) {
   menuCard.addEventListener("click", () => {
     if (menu.classList.contains("active")) {
       menu.classList.remove("active");
-      menuIcon.name = "menu-outline"; 
+      menuIcon.name = "menu-outline";
     } else {
       menu.classList.add("active");
       menuIcon.name = "close-outline";
@@ -56,7 +56,7 @@ if (showCart) {
     body.classList.add("show-cart");
     body.classList.remove("show-wishlist");
     menu.classList.remove("active");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
@@ -66,21 +66,21 @@ if (showWishList) {
     body.classList.add("show-wishlist");
     body.classList.remove("show-cart");
     menu.classList.remove("active");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
 if (closeCart) {
   closeCart.addEventListener("click", () => {
     body.classList.remove("show-cart");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
 if (closeWishlist) {
   closeWishlist.addEventListener("click", () => {
     body.classList.remove("show-wishlist");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
@@ -91,23 +91,22 @@ if (showLoginForm) {
     body.classList.remove("show-wishlist");
     body.classList.remove("show-cart");
     menu.classList.remove("active");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
 if (closeLoginForm) {
   closeLoginForm.addEventListener("click", () => {
     body.classList.toggle("show-loginform");
-    menuIcon.name = "menu-outline"; 
+    menuIcon.name = "menu-outline";
   });
 }
 
-if(checkoutBtn) {
-  checkoutBtn.addEventListener('click',(e)=> {
-    e.preventDefault()
-  })
+if (checkoutBtn) {
+  checkoutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
 }
-
 
 const playBtn = document.querySelector("#playBtn");
 const videoContainer = document.querySelector(".banner-video");
@@ -134,8 +133,6 @@ const productFilters = document.querySelectorAll(".filter-item ");
 const itemCount = document.querySelector(".item-count");
 const favorite = document.querySelectorAll(".product-favorite");
 const newsletterBtn = document.querySelector(".newsletter-btn");
-
-
 
 if (newsletterBtn) {
   newsletterBtn.addEventListener("click", (e) => {
@@ -169,9 +166,7 @@ function displayFiltered(category, listProducts) {
   }
 }
 
-const loadCheckout = ()=> {
-
-}
+const loadCheckout = () => {};
 
 let cartItems = [];
 let wishlistItems = [];
@@ -937,16 +932,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    // const response = await fetch("https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json");
-     const response = await fetch('/data/products.json')
+    const response = await fetch(
+      "https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json"
+    );
+
     listProducts = await response.json();
 
     if (currentPage.includes("index")) {
       renderChairsForHomePage(listProducts);
     } else if (currentPage.includes("shop")) {
-      listProducts.forEach(product=> {
-        product.image = '../'.concat(product.image)
-      })
+      listProducts.forEach((product) => {
+        product.image = "../".concat(product.image);
+      });
       renderChairsForShopPage(listProducts);
       const categoryFilters = document.querySelectorAll(
         ".filter-category .custom-label"
@@ -1047,8 +1044,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       updateSlide(currentText);
       startAutoChange();
-    }else if(currentPage.includes('checkout')) {
-       
+    } else if (currentPage.includes("checkout")) {
     }
   } catch (error) {
     console.log(listProducts);
