@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sitewise | Contact</title>
+    <title>Sitewise | Shop</title>
     <!-- CSS -->
     <link rel="stylesheet" href="../public/css/style.css" />
     <!-- ION-ICONS JS -->
@@ -42,10 +42,10 @@
           >
           <ul class="menu-link">
             <li><a href="../index.html" class="link">Home</a></li>
-            <li><a href="shop.html" class="link">Shop</a></li>
+            <li class="active"><a href="shop.html" class="link">Shop</a></li>
             <li><a href="about.html" class="link">About Us</a></li>
             <li><a href="blog.html" class="link">Blog</a></li>
-            <li class="active">
+            <li>
               <a href="contact.html" class="link">contact</a>
             </li>
             <li>
@@ -73,6 +73,17 @@
       </div>
     </header>
     <!-- HEADER END -->
+    <!-- BREADCRUMB -->
+    <div class="shop-pg navigation-container" id="breadcrumb">
+      <h2 class="page-header">Checkout</h2>
+      <div class="navigation-links">
+        <a href="/index.html" class="home-link">Home</a>
+        <span>></span>
+        <a href="#" class="current-page-link">Checkout</a>
+      </div>
+    </div>
+
+    <!-- END BREADCRUMB -->
     <!-- WISHLIST -->
     <div class="wishlist-container">
       <div class="wishlist-header">
@@ -91,6 +102,7 @@
       </div>
     </div>
     <!-- END WISHLIST-->
+    <!-- HEADER END -->
     <div class="shopping-cart">
       <div class="shopping-cart-header">
         <h2 class="shopping-cart-title">Shopping Cart</h2>
@@ -144,42 +156,12 @@
         </div>
       </form>
     </div>
-    <!-- END LOGIN FORM -->
-    <!-- BREADCRUMB -->
-    <div class="shop-pg navigation-container" id="breadcrumb">
-      <h2 class="page-header">Contact Us</h2>
-      <div class="navigation-links">
-        <a href="index.html" class="home-link">Home</a>
-        <span>></span>
-        <a href="#" class="current-page-link">Contact</a>
-      </div>
-    </div>
-    <!-- END BREADCRUMB -->
-    <!-- CONTACT FORM -->
-    <section class="contact-info-section container">
-      <div class="contact-details">
-        <h2>Get In Touch</h2>
-        <div class="contact-item">
-          <span class="icon"
-            ><ion-icon name="location-outline"></ion-icon
-          ></span>
-          <p>1234 Chair Avenue, Furniture City, Country</p>
-        </div>
-        <div class="contact-item">
-          <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
-          <p>+27 11 234 5678</p>
-        </div>
-        <div class="contact-item">
-          <span class="icon"><ion-icon name="time-outline"></ion-icon></span>
-          <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
-        </div>
-      </div>
-      <div class="contact-form">
-        <h3>Make Custom Request</h3>
-        <p>
-          Must-have pieces selected every month want style Ideas and Treats?
-        </p>
-        <form action="#">
+    <!-- END FORM -->
+
+    <section class="checkout-pg container">
+      <h2 class="billing-heading">Billing Details</h2>
+      <div class="checkout-content">
+        <div class="billing-form">
           <div class="form-group">
             <input
               type="text"
@@ -187,47 +169,116 @@
               placeholder="Fullname"
               required
             />
-            <input
-              type="email"
-              class="form-input"
-              placeholder="Email Address"
-              required
-            />
-            <input
-              type="tel"
-              class="form-input"
-              placeholder="Phone Number"
-              required
-            />
-            <input
-              type="text"
-              class="form-input"
-              placeholder="Subject"
-              required
-            />
+           
           </div>
-
-          <textarea class="message-box" placeholder="Enter Message"></textarea>
-          <input type="submit" value="Submit" />
-        </form>
+        </div>
+        <div class="payment-wrapper">
+          <div class="order-detail">
+            <h2 class="order-heading">Your Order</h2>
+            <ul class="order-list">
+              <li>
+                <h3>Product</h3>
+                <h3>Subtotal</h3>
+              </li>
+              <li class="item-list">
+                <div class="cart-items">
+                  Small Gray Table <span class="item-no">X 5</span>
+                </div>
+                <span>R45000</span>
+              </li>
+              <li class="subtotal">
+                <h3>Subtotal</h3>
+                <span class="subtotal">R45000</span>
+              </li>
+              <li class="shipping">
+                <span>Shipping</span>
+                <span>Free Shipping</span>
+              </li>
+              <li class="vat-container">
+                <span>VAT</span>
+                <span>R200</span>
+              </li>
+              <li class="total-price">
+                <span>Total</span>
+                <span>R45200</span>
+              </li>
+            </ul>
+          </div>
+          <!-- PAYMENT TYPE -->
+          <ul class="payment-type">
+            <li class="payment-method">
+              <label for="direct-bank" class="custom-label active">
+                <input
+                  type="radio"
+                  id="direct-bank"
+                  name="category"
+                  class="custom-radio"
+                />
+                Direct Bank Transfer
+                <span class="checkmark"></span>
+              </label>
+              <p class="method-description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ducimus temporibus ipsam optio laudantium omnis perferendis
+                repellendus. Quas rem iste magni?
+              </p>
+            </li>
+            <li class="payment-method">
+              <label for="check-payment" class="custom-label active">
+                <input
+                  type="radio"
+                  id="check-payment"
+                  name="category"
+                  class="custom-radio"
+                />
+                Check payments
+                <span class="checkmark"></span>
+              </label>
+              <p class="method-description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ducimus temporibus ipsam optio laudantium omnis perferendis
+                repellendus. Quas rem iste magni?
+              </p>
+            </li>
+            <li class="payment-method">
+              <label for="cash-delivery" class="custom-label active">
+                <input
+                  type="radio"
+                  id="cash-delivery
+                  name="category"
+                  class="custom-radio"
+                />
+                Cash on delivery
+                <span class="checkmark"></span>
+              </label>
+              <p class="method-description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ducimus temporibus ipsam optio laudantium omnis perferendis
+                repellendus. Quas rem iste magni?
+              </p>
+            </li>
+            <li class="payment-method">
+              <label for="paypal" class="custom-label active">
+                <input
+                  type="radio"
+                  id="paypal
+                  name="category"
+                  class="custom-radio"
+                />
+                PayPal
+                <span class="checkmark"></span>
+              </label>
+              <p class="method-description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Ducimus temporibus ipsam optio laudantium omnis perferendis
+                repellendus. Quas rem iste magni?
+              </p>
+            </li>
+          </ul>
+          <a href="#" class="btn place-order">Place Order</a>
+        </div>
       </div>
     </section>
-    <!-- END FORM -->
-    <!-- LOCATION -->
-    <section class="store-location">
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.703093697337!2d-73.9908446845696!3d40.73061005920762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259ae0d8ed1d5%3A0x4f509d684f5773d6!2sFurniture%20Store%20Name!5e0!3m2!1sen!2sus!4v1646434319842!5m2!1sen!2sus"
-          width="100%"
-          height="400"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-        >
-        </iframe>
-      </div>
-    </section>
-    <!--  END LOCATION -->
     <!-- FOOTER SECTION -->
     <footer class="footer-wrapper shop-pg" id="footer-section">
       <ul class="footer-items">
@@ -292,7 +343,7 @@
         >Language <ion-icon name="chevron-up-outline"></ion-icon
       ></span>
     </div>
-
+    <!--JS -->
     <script src="/public/js/main.js"></script>
   </body>
 </html>
