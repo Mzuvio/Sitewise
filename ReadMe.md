@@ -14,38 +14,15 @@ Welcome to **SITEWISE**, your premier destination for exquisite living room and 
 - **Backend:** Node.js with Express
 - **Database:** MongoDB
 - **Design Tool:** Figma
-- **Deployment:** (Specify if hosted)
+- **Deployment:** (https://mzuvio.github.io/Sitewise/)
 
 ## 📦 Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Mzuvio/sitewise.git
-   ```
-2. Navigate to the project folder:
-   ```bash
-   cd sitewise
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the server:
-   ```bash
-   npm start
-   ```
-5. Open in your browser:
-   ```
-   http://localhost:3000
-   ```
 
 ## 🌟 Usage
 - Browse products.
 - Add items to the cart.
 - Proceed to secure checkout.
 - Enjoy luxury seating!
-
-## 📚 Documentation
-For detailed documentation, refer to the [SITEWISE Documentation](#).
 
 ## 🤝 Contributing
 Contributions are welcome! Please fork the repository and create a pull request.
