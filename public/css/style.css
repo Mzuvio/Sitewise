@@ -1925,6 +1925,7 @@ input::-moz-placeholder {
   .product-collection .product-container {
     grid-template-columns: repeat(2, minmax(165px, 1fr));
     gap: 1rem;
+    background-color: blue;
   }
 
   .product-collection .product-item {
@@ -2087,6 +2088,7 @@ input::-moz-placeholder {
   .product-collection .product-container {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
     gap: 1rem;
+    background-color: red;
   }
 
   .product-collection .product-item {
