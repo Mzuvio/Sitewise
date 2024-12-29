@@ -3100,17 +3100,14 @@ input::-moz-placeholder {
 
 @media screen and (max-width: 360px) {
   .main-content .chairs-display {
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
     gap: 1rem;
   }
 
   .main-container .product-item {
-    width: 150px;
+    width: 130px;
   }
 
-  .main-container .product-item {
-    width: 150px;
-  }
 }
 
 /* ABOUT PG */
