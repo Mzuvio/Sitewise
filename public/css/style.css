@@ -2122,6 +2122,30 @@ input::-moz-placeholder {
     padding-bottom: 0.5rem;
     color: gray;
   }
+  .item-details .button-area {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .button-area .quantity-area {
+    width: fit-content;
+    gap: 0.5rem;
+  }
+
+  .quantity-area .decrease,
+  .quantity-area .qantity,
+  .quantity-area .increase {
+    font-size: 1rem;
+  }
+
+  .quantity-area .increase,
+  .quantity-area .decrease {
+    cursor: pointer;
+  }
+
 }
 
 @media screen and (max-width: 320px) {
@@ -2212,17 +2236,27 @@ input::-moz-placeholder {
   }
 
   .item-details .button-area {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .button-area .quantity-area {
+    width: fit-content;
     gap: 0.5rem;
   }
 
   .quantity-area .decrease,
   .quantity-area .qantity,
   .quantity-area .increase {
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 
-  .button-area .cart-add {
-    font-size: 0.75rem;
+  .quantity-area .increase,
+  .quantity-area .decrease {
+    cursor: pointer;
   }
 
   .item-details .wishlist-area {
