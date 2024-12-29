@@ -253,7 +253,7 @@ const renderCartProducts = (cartItems) => {
           }</span>
             <div class="cart-item-quantity">
               ${
-                clickedStates[index]
+                clickedStates[index] || product.quantity > 1
                   ? `<button class="quantity-decrease" data-index="${index}">
                        <ion-icon name="remove-outline"></ion-icon>
                      </button>`
@@ -336,6 +336,41 @@ const renderCartProducts = (cartItems) => {
   render();
 };
 
+const renderDisplayWishilist = (target, displayCard) => {
+  let wishlist = getWishlistFromLocalStorage();
+  target.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const productElement = displayCard
+    const id = productElement.dataset.id;
+    const productName =
+      productElement.querySelector(".chair-name").textContent;
+    const productPrice =
+      productElement.querySelector(".chair-price").textContent;
+    const productImage = productElement.querySelector(".image-card img").src;
+
+    const productInWishlist = wishlist.some((item) => item.id === id);
+
+    if (productInWishlist) {
+      wishlist = wishlist.filter((item) => item.id !== id);
+      target.name = "heart-outline";
+      target.style.color = "#2d2a32";
+    } else {
+      wishlist.push({
+        id: id,
+        name: productName,
+        price: productPrice,
+        image: productImage,
+      });
+      target.name = "heart";
+      target.style.color = "#2d2a32";
+    }
+
+    saveWishlistToLocalStorage(wishlist);
+    updateWishlistCount(wishlist);
+    renderWishlistProducts(wishlist);
+  });
+};
+
 const renderWishlistProducts = (wishlistItems) => {
   const wishlistContainer = document.querySelector(".wishlist-items");
   const wishlistCount = document.querySelector(".count-wishlist");
@@ -350,7 +385,7 @@ const renderWishlistProducts = (wishlistItems) => {
     const productList = wishlistItems
       .map((product, index) => {
         return `
-        <div class="cart-item" data-index="${index}">
+        <div class="cart-item" data-index="${index} data-id=${product.id}">
           <div class="cart-item-img-wrapper">
             <img
               src="${product.image}"
@@ -522,8 +557,10 @@ const renderChairsForHomePage = (listProducts) => {
     imageCards.forEach((image) => {
       image.addEventListener("click", (e) => {
         let productElement = e.target.parentElement.parentElement.parentElement;
+        const whishlistIcon = document.querySelector(".display-wishlist-icon");
         let imgURL = productElement.querySelector(".image-card img").src;
         let id = productElement.dataset.id;
+        productDisplay.dataset.id = id;
         let itemName = productElement.dataset.itemName;
         let basePrice =
           productElement.querySelector(".product-price").textContent;
@@ -531,7 +568,6 @@ const renderChairsForHomePage = (listProducts) => {
         let chairImage = document.querySelector(".left-side img");
         let chairName = document.querySelector(".chair-name");
         let chairPrice = document.querySelector(".chair-price");
-
         basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
 
         chairImage.src = imgURL;
@@ -540,8 +576,13 @@ const renderChairsForHomePage = (listProducts) => {
 
         productDisplay.classList.add("show");
 
+        if (whishlistIcon) {
+          renderDisplayWishilist(whishlistIcon, productDisplay);
+        }
+
         if (addToCart) {
           addToCart.onclick = () => {
+            let quantity = parseInt(Number(productQuantity.textContent));
             const storedCart = getCartFromLocalStorage();
             cartItems = storedCart;
             if (id) {
@@ -554,7 +595,7 @@ const renderChairsForHomePage = (listProducts) => {
                   itemName,
                   price: `R${basePrice.toFixed(2)}`,
                   basePrice,
-                  quantity: 1,
+                  quantity: quantity,
                 });
                 saveCartToLocalStorage(cartItems);
                 updateItemCount(cartItems);
@@ -641,20 +682,6 @@ const renderChairsForHomePage = (listProducts) => {
         }
 
         renderCartProducts(cartItems);
-      });
-    });
-
-    favoriteIcons.forEach((icon) => {
-      icon.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        if (icon.name === "heart-outline") {
-          icon.name = "heart";
-          icon.style.color = "#2d2a32";
-        } else {
-          icon.name = "heart-outline";
-          icon.style.color = "#2d2a32";
-        }
       });
     });
   } catch (error) {
@@ -926,20 +953,84 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+    const popupWrapper = document.querySelector(".popup-wrapper");
+    const closePopupButton = document.querySelector(".popup-close ion-icon");
     const currentPage = window.location.pathname;
     let cartItems = getCartFromLocalStorage();
     let wishlistItems = getWishlistFromLocalStorage();
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    const response = await fetch(
-      "https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json"
-    );
+    // const response = await fetch(
+    //   "https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json"
+    // );
 
+    const response = await fetch("/data/products.json");
     listProducts = await response.json();
+
+    function showPopup() {
+      popupWrapper.classList.add("show");
+    }
+    function hidePopup() {
+      popupWrapper.classList.remove("show");
+    }
+
+    window.addEventListener("click", (e) => {
+      if (e.target === popupWrapper) {
+        if (popupWrapper.classList.contains("show")) {
+          popupWrapper.classList.remove("show");
+        }
+      }
+    });
 
     if (currentPage.includes("index")) {
       renderChairsForHomePage(listProducts);
+
+      const promotionImgUrl = document.querySelector(
+        ".promotion-wrapper #promotion-image"
+      );
+      const promotionChairName = document.querySelector(
+        ".promotion-wrapper .promotion-title"
+      );
+      const promotionPrice = document.querySelector(".promotion-price");
+      const promotionBtn = document.querySelector(
+        ".promotion-wrapper .shop-now"
+      );
+
+      if (promotionBtn) {
+        promotionBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          let productElement =
+            e.target.parentElement.parentElement.parentElement;
+          let id = listProducts[listProducts.length - 1].id + 1;
+          productElement.dataset.promoId = id;
+          let productImage = promotionImgUrl.src;
+          let productName = promotionChairName.textContent;
+          let newId = productElement.dataset.promoId;
+          let price = parseFloat(
+            promotionPrice.textContent.replace("R", "").replace(",", ".")
+          );
+          if (newId) {
+            cartItems = getCartFromLocalStorage();
+            let exists = cartItems.find((item) => item.id == newId);
+            if (!exists) {
+              cartItems.push({
+                id: newId,
+                imgURL: productImage,
+                itemName: productName,
+                price: `R${price.toFixed(2)}`,
+                basePrice: price,
+                quantity: 1,
+              });
+            } else {
+              showPopup();
+            }
+            saveCartToLocalStorage(cartItems);
+            updateItemCount(cartItems);
+          }
+          renderCartProducts(cartItems);
+        });
+      }
     } else if (currentPage.includes("shop")) {
       listProducts.forEach((product) => {
         product.image = "../".concat(product.image);

@@ -2127,6 +2127,10 @@ input::-moz-placeholder {
     font-size: var(--fs-xsml);
   }
   
+  .rating-area {
+    align-items: start;
+    flex-direction: column;
+  }
   
   .rating-area .user-reviews {
     font-size: var(--fs-xsml);
