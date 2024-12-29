@@ -2122,10 +2122,21 @@ input::-moz-placeholder {
     padding-bottom: 0.5rem;
     color: gray;
   }
+
+  .star-list .star {
+    font-size: var(--fs-xsml);
+  }
+  
+  
+  .rating-area .user-reviews {
+    font-size: var(--fs-xsml);
+  }
+  
   .item-details .button-area {
     display: flex;
     justify-content: start;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     gap: 0.5rem;
   }
