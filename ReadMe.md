@@ -14,7 +14,7 @@ Welcome to **SITEWISE**, your premier destination for exquisite living room and 
 - **Backend:** Node.js with Express
 - **Database:** MongoDB
 - **Design Tool:** Figma
-- **Deployment:** (https://mzuvio.github.io/Sitewise/)
+- **Deployment:** (https://seatwise.netlify.app/)
 
 ## 📦 Installation
 
