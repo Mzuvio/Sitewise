@@ -266,6 +266,7 @@
                 type="radio"
                 id="black"
                 name="color"
+                value="black"
                 class="custom-radio"
               />
               Black
@@ -278,6 +279,7 @@
                 type="radio"
                 id="white"
                 name="color"
+                value="white"
                 class="custom-radio"
               />
               White
@@ -286,7 +288,13 @@
           </li>
           <li class="color-item">
             <label for="gold" class="custom-label">
-              <input type="radio" id="gold" name="color" class="custom-radio" />
+              <input
+                type="radio"
+                id="gold"
+                name="color"
+                value="gold"
+                class="custom-radio"
+              />
               Gold
               <span class="checkmark"></span>
             </label>
@@ -303,14 +311,12 @@
             <div class="select-selected">Default sorting</div>
             <div class="select-items select-hide">
               <div data-value="0" class="item">Default sorting</div>
-              <div data-value="7" class="item">Sort by category</div>
-              <div data-value="3" class="item">Price: Low to High</div>
-              <div data-value="4" class="item">Price: High to Low</div>
+              <div data-value="1" class="item">Sort by category</div>
+              <div data-value="2" class="item">Price: Low to High</div>
+              <div data-value="3" class="item">Price: High to Low</div>
             </div>
 
-            <span class="icon">
-              <ion-icon name="filter-outline"></ion-icon>
-            </span>
+            <span class="icon"> Y </span>
           </div>
         </div>
 

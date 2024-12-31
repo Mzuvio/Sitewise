@@ -167,19 +167,18 @@ function displayFiltered(category, listProducts) {
 }
 
 function closeCartPopup() {
-  document.getElementById('cart-notification').classList.remove('show');
+  document.getElementById("cart-notification").classList.remove("show");
 }
 
 function showCartPopup() {
-  console.log('Show')
-  const popup = document.getElementById('cart-notification');
-  popup.classList.add('show');
-  
+  console.log("Show");
+  const popup = document.getElementById("cart-notification");
+  popup.classList.add("show");
+
   setTimeout(() => {
     closeCartPopup();
   }, 2000);
 }
-
 
 const loadCheckout = () => {};
 
@@ -355,10 +354,9 @@ const renderDisplayWishilist = (target, displayCard) => {
   let wishlist = getWishlistFromLocalStorage();
   target.addEventListener("click", (e) => {
     e.stopPropagation();
-    const productElement = displayCard
+    const productElement = displayCard;
     const id = productElement.dataset.id;
-    const productName =
-      productElement.querySelector(".chair-name").textContent;
+    const productName = productElement.querySelector(".chair-name").textContent;
     const productPrice =
       productElement.querySelector(".chair-price").textContent;
     const productImage = productElement.querySelector(".image-card img").src;
@@ -440,7 +438,7 @@ const renderWishlistProducts = (wishlistItems) => {
 const renderChairsForHomePage = (listProducts) => {
   try {
     const productContainer = document.querySelector(".product-container");
-    productContainer.innerHTML = '';
+    productContainer.innerHTML = "";
     if (!productContainer) {
       console.log(
         "The 'product-container' element is not available on this page."
@@ -614,7 +612,7 @@ const renderChairsForHomePage = (listProducts) => {
                 });
                 saveCartToLocalStorage(cartItems);
                 updateItemCount(cartItems);
-                showCartPopup()
+                showCartPopup();
               } else {
                 showPopup();
               }
@@ -692,7 +690,7 @@ const renderChairsForHomePage = (listProducts) => {
             });
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
-            showCartPopup()
+            showCartPopup();
           } else {
             showPopup();
           }
@@ -844,7 +842,7 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
                 });
                 saveCartToLocalStorage(cartItems);
                 updateItemCount(cartItems);
-                showCartPopup()
+                showCartPopup();
               } else {
                 showPopup();
               }
@@ -922,7 +920,7 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
             });
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
-            showCartPopup()
+            showCartPopup();
           } else {
             showPopup();
           }
@@ -989,9 +987,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function showPopup() {
       popupWrapper.classList.add("show");
-    }
-    function hidePopup() {
-      popupWrapper.classList.remove("show");
     }
 
     window.addEventListener("click", (e) => {
@@ -1073,6 +1068,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const selectedFilter = document.querySelector(".select-selected");
       const sortItems = document.querySelectorAll(".select-items .item");
       const progressTotal = document.querySelector(".total-count");
+      const sidebarFilters = document.querySelectorAll(".sidebar-filter a");
+      const colorItems = document.querySelectorAll(".color-item input");
 
       filterIcon.addEventListener("click", () => {
         if (dropdownFilter.classList.contains("select-hide")) {
@@ -1082,9 +1079,105 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       });
 
+      const sortLowToHigh = (item1, item2) => {
+        if (item1.basePrice > item2.basePrice) {
+          return 1;
+        } else if (item1.basePrice < item2.basePrice) {
+          return -1;
+        } else {
+          return 0;
+        }
+      };
+
+      const sortHighToLow = (item1, item2) => {
+        if (item1.basePrice < item2.basePrice) {
+          return 1;
+        } else if (item1.basePrice > item2.basePrice) {
+          return -1;
+        } else {
+          return 0;
+        }
+      };
+
+      const sortByCategory = (item1, item2) => {
+        if (item1.category > item2.category) {
+          return 1;
+        } else if (item1.category < item2.category) {
+          return -1;
+        } else {
+          return 0;
+        }
+      };
+
+      function filterByPrice(items, range) {
+        return items.filter((product) => {
+          if (range === "0-2500") {
+            return product.basePrice <= 2500;
+          } else if (range === "2500-5000") {
+            return product.basePrice >= 2500 && product.basePrice <= 5000;
+          } else if (range === "5000-7500") {
+            return product.basePrice >= 5000 && product.basePrice <= 7500;
+          } else if (range === "7500-10000") {
+            return product.basePrice >= 7500 && product.basePrice <= 10000;
+          } else {
+            return product.basePrice >= 10000;
+          }
+        });
+      }
+
+      function filterByColor(items, color) {
+        return items.filter((item) => {
+          return item.color.toLowerCase() === color.toLowerCase();
+        });
+      }
+
+      sidebarFilters.forEach((filter) => {
+        filter.addEventListener("click", (e) => {
+          e.preventDefault();
+          let filteredProducts = filterByPrice(
+            listProducts,
+            e.target.dataset.range
+          );
+          renderChairsForShopPage(filteredProducts);
+          console.log(filteredProducts);
+        });
+      });
+
+      colorItems.forEach((colorItem) => {
+        colorItem.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (filterByColor(listProducts, e.target.value).length === 0) {
+            console.log("No chairs with this color");
+          } else {
+            renderChairsForShopPage(
+              filterByColor(listProducts, e.target.value)
+            );
+          }
+        });
+      });
+
       sortItems.forEach((item) => {
         item.addEventListener("click", (e) => {
           let currentSort = e.target.textContent;
+          if (listProducts.length > 0) {
+            switch (e.target.dataset.value) {
+              case "0":
+                console.log("");
+                break;
+              case "1":
+                renderChairsForShopPage(sortByCategory);
+                break;
+              case "2":
+                listProducts = listProducts.sort(sortLowToHigh);
+                renderChairsForShopPage(listProducts);
+                break;
+              case "3":
+                listProducts = listProducts.sort(sortHighToLow);
+                renderChairsForShopPage(listProducts);
+                break;
+            }
+          }
+
           selectedFilter.innerHTML = currentSort;
           dropdownFilter.classList.add("select-hide");
         });

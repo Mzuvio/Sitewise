@@ -9,7 +9,8 @@
     "sale": false,
     "categoryType": "Best Seller",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Brown"
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@
     "sale": true,
     "categoryType": "Sales",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Grey"
   },
   {
     "id": 3,
@@ -33,7 +35,8 @@
     "sale": false,
     "categoryType": "Best Seller",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "White"
   },
   {
     "id": 4,
@@ -45,7 +48,8 @@
     "sale": true,
     "categoryType": "Sales",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "white"
   },
   {
     "id": 5,
@@ -57,7 +61,8 @@
     "sale": true,
     "categoryType": "Sales",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "white"
   },
   {
     "id": 6,
@@ -69,7 +74,8 @@
     "sale": false,
     "categoryType": "Featured",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Black"
   },
   {
     "id": 7,
@@ -81,7 +87,8 @@
     "sale": true,
     "categoryType": "Sales",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Black"
   },
   {
     "id": 8,
@@ -93,7 +100,8 @@
     "sale": false,
     "categoryType": "Featured",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Black"
   },
   {
     "id": 9,
@@ -105,7 +113,8 @@
     "sale": false,
     "categoryType": "Best Seller",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Cream White"
   },
   {
     "id": 10,
@@ -117,7 +126,8 @@
     "sale": false,
     "categoryType": "Featured",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "White"
   },
   {
     "id": 11,
@@ -129,7 +139,8 @@
     "sale": true,
     "categoryType": "Sales",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "Brown"
   },
   {
     "id": 12,
@@ -141,6 +152,7 @@
     "sale": false,
     "categoryType": "Featured",
     "icon": "bag-outline",
-    "favoriteIcon": "heart-outline"
+    "favoriteIcon": "heart-outline",
+    "color": "White"
   }
 ]
