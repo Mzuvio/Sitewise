@@ -844,6 +844,7 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
                 });
                 saveCartToLocalStorage(cartItems);
                 updateItemCount(cartItems);
+                showCartPopup()
               } else {
                 showPopup();
               }
@@ -921,6 +922,7 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
             });
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
+            showCartPopup()
           } else {
             showPopup();
           }
