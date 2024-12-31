@@ -1000,6 +1000,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (currentPage.includes("index")) {
       renderChairsForHomePage(listProducts);
 
+      const defaultFilter = document.querySelector(
+        '.filter-item[data-id="all"]'
+      );
+      if (defaultFilter) {
+        defaultFilter.click();
+      }
+
       const promotionImgUrl = document.querySelector(
         ".promotion-wrapper #promotion-image"
       );

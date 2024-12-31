@@ -1736,6 +1736,10 @@ input::-moz-placeholder {
     font-size: 1.125rem;
   }
 
+  .section-services .service-description {
+    font-size: var(--fs-xsml);
+  }
+
   .section-services .service-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1753,7 +1757,7 @@ input::-moz-placeholder {
   }
 
   .section-services .service-description {
-    font-size: var(--fs-sml);
+    font-size: var(--fs-xsml);
   }
 
   .section-services .service-list {
@@ -1773,7 +1777,7 @@ input::-moz-placeholder {
   }
 
   .section-services .service-description {
-    font-size: var(--fs-sml);
+    font-size: var(--fs-xsml);
   }
 
   .section-services .service-list {
@@ -3951,7 +3955,7 @@ input::-moz-placeholder {
   }
 
   .sort-dropdown {
-    width: fit-content;
+    width: 190px;
   }
 
   .main-content .chairs-display {
@@ -3997,6 +4001,10 @@ input::-moz-placeholder {
 
   .main-container .product-item {
     width: 140px;
+  }
+
+  .sort-dropdown {
+    width: 190px;
   }
 }
 
