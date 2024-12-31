@@ -1761,8 +1761,10 @@ input::-moz-placeholder {
   }
 
   .section-services .service-title {
-    font-size: 1.125rem;
+    font-size: var(--fs-sml);
+    font-weight: var(--fw-medium);
   }
+
 
   .section-services .service-description {
     font-size: var(--fs-xsml);
