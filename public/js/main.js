@@ -707,6 +707,7 @@ const renderChairsForHomePage = (listProducts) => {
 const renderChairsForShopPage = (products, loadmore = 8) => {
   try {
     const chairDisplayWrapper = document.querySelector(".chairs-display");
+    chairDisplayWrapper.innerHTML = "";
     const viewedCount = document.querySelector(".viewed-count");
     if (products.length > 0) {
       viewedCount.textContent = Math.min(loadmore, products.length);
@@ -971,7 +972,6 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const popupWrapper = document.querySelector(".popup-wrapper");
-    const closePopupButton = document.querySelector(".popup-close ion-icon");
     const currentPage = window.location.pathname;
     let cartItems = getCartFromLocalStorage();
     let wishlistItems = getWishlistFromLocalStorage();
@@ -1046,6 +1046,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
       }
     } else if (currentPage.includes("shop")) {
+      const originalProducts = [...listProducts];
+
       listProducts.forEach((product) => {
         product.image = "../".concat(product.image);
       });
@@ -1109,77 +1111,82 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       };
 
-      function filterByPrice(items, range) {
-        return items.filter((product) => {
-          if (range === "0-2500") {
-            return product.basePrice <= 2500;
-          } else if (range === "2500-5000") {
-            return product.basePrice >= 2500 && product.basePrice <= 5000;
-          } else if (range === "5000-7500") {
-            return product.basePrice >= 5000 && product.basePrice <= 7500;
-          } else if (range === "7500-10000") {
-            return product.basePrice >= 7500 && product.basePrice <= 10000;
-          } else {
-            return product.basePrice >= 10000;
-          }
-        });
-      }
-
-      function filterByColor(items, color) {
-        return items.filter((item) => {
-          return item.color.toLowerCase() === color.toLowerCase();
-        });
-      }
-
-      sidebarFilters.forEach((filter) => {
-        filter.addEventListener("click", (e) => {
-          e.preventDefault();
-          let filteredProducts = filterByPrice(
-            listProducts,
-            e.target.dataset.range
-          );
-          renderChairsForShopPage(filteredProducts);
-          console.log(filteredProducts);
-        });
-      });
-
-      colorItems.forEach((colorItem) => {
-        colorItem.addEventListener("click", (e) => {
-          e.stopPropagation();
-          if (filterByColor(listProducts, e.target.value).length === 0) {
-            console.log("No chairs with this color");
-          } else {
-            renderChairsForShopPage(
-              filterByColor(listProducts, e.target.value)
-            );
-          }
-        });
-      });
-
       sortItems.forEach((item) => {
         item.addEventListener("click", (e) => {
           let currentSort = e.target.textContent;
           if (listProducts.length > 0) {
             switch (e.target.dataset.value) {
               case "0":
-                console.log("");
+                listProducts = [...originalProducts];
                 break;
               case "1":
-                renderChairsForShopPage(sortByCategory);
+                listProducts.sort(sortByCategory);
                 break;
               case "2":
-                listProducts = listProducts.sort(sortLowToHigh);
-                renderChairsForShopPage(listProducts);
+                listProducts.sort(sortLowToHigh);
                 break;
               case "3":
-                listProducts = listProducts.sort(sortHighToLow);
-                renderChairsForShopPage(listProducts);
+                listProducts.sort(sortHighToLow);
                 break;
             }
+            renderChairsForShopPage(listProducts);
           }
 
           selectedFilter.innerHTML = currentSort;
           dropdownFilter.classList.add("select-hide");
+        });
+      });
+
+      function filterByPrice(items, range) {
+        return items.filter((product) => {
+          const price = Number(product.basePrice);
+
+          switch (range) {
+            case "0-2500":
+              return price > 0 && price <= 2500;
+            case "2500-5000":
+              return price > 2500 && price <= 5000;
+            case "5000-7500":
+              return price > 5000 && price <= 7500;
+            case "7500-10000":
+              return price > 7500 && price <= 10000;
+            case "10000+":
+              return price > 10000;
+            default:
+              console.warn(`Unknown price range: ${range}`);
+              return false;
+          }
+        });
+      }
+
+      sidebarFilters.forEach((filter) => {
+        filter.addEventListener("click", (e) => {
+          e.preventDefault();
+          let range = e.target.dataset.range;
+          if (!range) {
+            console.error("Price range not found on clicked element.");
+            return;
+          }
+          let filteredProducts = filterByPrice(listProducts, range);
+          renderChairsForShopPage(filteredProducts);
+        });
+      });
+
+      function filterByColor(items, color) {
+        return items.filter(
+          (product) => product.color.toLowerCase() === color.toLowerCase()
+        );
+      }
+
+      colorItems.forEach((colorItem) => {
+        colorItem.addEventListener("change", (e) => {
+          let selectedColor = e.target.value;
+          let filteredProducts = filterByColor(listProducts, selectedColor);
+          if (filteredProducts.length === 0) {
+            console.log(`No chairs found with color: ${selectedColor}`);
+          } else {
+            renderChairsForShopPage(filteredProducts);
+          }
         });
       });
 

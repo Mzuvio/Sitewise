@@ -1397,7 +1397,7 @@ input::-moz-placeholder {
 
 .form-register .form-header .form-title {
   font-size: 1.25rem;
-  text-transform: uppercase;
+  text-transform:capitalize;
 }
 
 .register-pg .form-switch {
