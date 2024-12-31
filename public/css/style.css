@@ -1697,7 +1697,7 @@ input::-moz-placeholder {
 
 .section-services .service-title {
   font-size: var(--fs-sml);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   color: var(--text-clr);
   margin-bottom: 0.75rem;
   position: relative;
@@ -1711,21 +1711,6 @@ input::-moz-placeholder {
   line-height: var(--line-height);
 }
 
-@media screen and (max-width: 768px) {
-  .section-services .service-title {
-    font-size: 1.125rem;
-  }
-
-  .section-services .service-description {
-    font-size: var(--fs-xsml);
-  }
-
-  .section-services .service-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-}
 
 @media screen and (max-width: 768px) {
   .section-services {
@@ -1734,6 +1719,7 @@ input::-moz-placeholder {
 
   .section-services .service-title {
     font-size: 1.125rem;
+    font-weight: var(--fw-medium);
   }
 
   .section-services .service-description {
@@ -1747,13 +1733,15 @@ input::-moz-placeholder {
   }
 }
 
+
 @media screen and (max-width: 390px) {
   .section-services {
     padding-block: 2rem;
   }
 
   .section-services .service-title {
-    font-size: 1.125rem;
+    font-size: var(--fs-sml);
+    font-weight: var(--fw-medium);
   }
 
   .section-services .service-description {
