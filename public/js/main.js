@@ -166,6 +166,21 @@ function displayFiltered(category, listProducts) {
   }
 }
 
+function closeCartPopup() {
+  document.getElementById('cart-notification').classList.remove('show');
+}
+
+function showCartPopup() {
+  console.log('Show')
+  const popup = document.getElementById('cart-notification');
+  popup.classList.add('show');
+  
+  setTimeout(() => {
+    closeCartPopup();
+  }, 2000);
+}
+
+
 const loadCheckout = () => {};
 
 let cartItems = [];
@@ -425,7 +440,7 @@ const renderWishlistProducts = (wishlistItems) => {
 const renderChairsForHomePage = (listProducts) => {
   try {
     const productContainer = document.querySelector(".product-container");
-
+    productContainer.innerHTML = '';
     if (!productContainer) {
       console.log(
         "The 'product-container' element is not available on this page."
@@ -599,6 +614,7 @@ const renderChairsForHomePage = (listProducts) => {
                 });
                 saveCartToLocalStorage(cartItems);
                 updateItemCount(cartItems);
+                showCartPopup()
               } else {
                 showPopup();
               }
@@ -676,6 +692,7 @@ const renderChairsForHomePage = (listProducts) => {
             });
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
+            showCartPopup()
           } else {
             showPopup();
           }
