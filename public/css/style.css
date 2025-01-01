@@ -626,9 +626,6 @@ img {
   }
 }
 
-
-
-
 /* SHOWCASE SECTION */
 
 .showcase-section {
@@ -1397,7 +1394,7 @@ input::-moz-placeholder {
 
 .form-register .form-header .form-title {
   font-size: 1.25rem;
-  text-transform:capitalize;
+  text-transform: capitalize;
 }
 
 .register-pg .form-switch {
@@ -1711,7 +1708,6 @@ input::-moz-placeholder {
   line-height: var(--line-height);
 }
 
-
 @media screen and (max-width: 768px) {
   .section-services {
     padding-block: 3rem;
@@ -1732,7 +1728,6 @@ input::-moz-placeholder {
     gap: 1.5rem;
   }
 }
-
 
 @media screen and (max-width: 390px) {
   .section-services {
@@ -1764,7 +1759,6 @@ input::-moz-placeholder {
     font-size: var(--fs-sml);
     font-weight: var(--fw-medium);
   }
-
 
   .section-services .service-description {
     font-size: var(--fs-xsml);
@@ -2850,6 +2844,7 @@ input::-moz-placeholder {
 .promotion-wrapper .shop-now {
   color: var(--text-clr);
   font-size: var(--fs-xsml);
+  font-family: "Jost", sans-serif;
 }
 
 .promotion-wrapper .right-cl {
@@ -3617,8 +3612,7 @@ input::-moz-placeholder {
   z-index: 10;
 }
 
-@media screen and (max-width:768px){
-  
+@media screen and (max-width: 768px) {
 }
 
 /* MAIN CONTAINER */
@@ -4503,8 +4497,23 @@ input::-moz-placeholder {
 
 .checkout-pg .order-detail {
   width: 100%;
+  max-width: 100%;
   padding: 1.75rem;
   border: 1px solid var(--dark-clr);
+}
+
+.checkout-pg .form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkout-pg .form-group .form-control {
+  flex: 1;
+}
+
+.checkout-pg .form-control {
+  margin-block: 1rem;
 }
 
 .order-detail h2 {
@@ -4534,10 +4543,22 @@ input::-moz-placeholder {
   border: none;
 }
 
-.order-detail .item-list span,
 .order-detail .item-list {
-  color: rgb(203, 203, 203);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.order-detail .item-list span,
+.order-detail .item {
+  color: rgb(181, 181, 181);
   font-weight: var(--fw-medium);
+}
+
+.order-detail .item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .order-detail h3 {
@@ -4562,7 +4583,7 @@ input::-moz-placeholder {
 }
 
 .payment-type .payment-method {
-  padding-block: 1rem;
+  padding-block: 0.875rem;
 }
 
 .payment-method label {
@@ -4578,11 +4599,29 @@ input::-moz-placeholder {
   line-height: var(--line-height);
   margin-left: 1.25rem;
   margin-top: 0.75rem;
+  display: none;
+  transition: all 0.5s ease;
+}
+
+.method-description.show {
+  display: block;
+  animation: popup-slide 0.5s linear;
+}
+
+@keyframes popup-slide {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .payment-wrapper .btn {
   max-width: 100%;
-  background-color: var(--dark-clr);
+  background-color: var(--dark-grey);
   color: var(--white-clr);
   border-radius: 0;
   text-transform: uppercase;
@@ -4593,7 +4632,21 @@ input::-moz-placeholder {
   margin-top: 1rem;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 390px) {
+  .checkout-pg .billing-heading {
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .checkout-pg .form-control {
+    margin-block: 1rem;
+  }
+
+  .checkout-pg .form-input {
+    padding: 0.75rem;
+  }
+
   .checkout-pg .checkout-content {
     display: flex;
     flex-direction: column;
@@ -4613,5 +4666,62 @@ input::-moz-placeholder {
 
   .order-detail span {
     font-size: var(--fs-xsml);
+  }
+
+  .checkout-pg .billing-form {
+    flex: none;
+    width: 100%;
+  }
+
+  .checkout-pg .payment-wrapper {
+    flex:none;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .checkout-pg .billing-heading {
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .checkout-pg .form-control {
+    margin-block: 1rem;
+  }
+
+  .checkout-pg .form-input {
+    padding: 0.75rem;
+  }
+
+  .checkout-pg .checkout-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkout-pg .order-detail {
+    width: 100%;
+  }
+
+  .order-detail h2 {
+    margin-bottom: 1rem;
+  }
+
+  .order-detail h3 {
+    font-size: var(--fs-sml);
+  }
+
+  .order-detail span {
+    font-size: var(--fs-xsml);
+  }
+
+  .checkout-pg .billing-form {
+    flex: none;
+    width: 100%;
+  }
+
+  .checkout-pg .payment-wrapper {
+    flex:none;
+    width: 100%;
   }
 }

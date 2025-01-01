@@ -197,6 +197,7 @@ function calculateTotal(cartItems) {
   }
   total === 0 ? "0" : `R${total.toFixed(2)}`;
   document.querySelector(".cart-total").textContent = `Subtotal R${total}`;
+  return total;
 }
 
 const updateItemCount = (cartItems) => {
@@ -235,6 +236,38 @@ const saveWhishlisTotLocalStorage = (whishlist) => {
 const getWhishlistFromLocalStorage = () => {
   const whishlistItems = localStorage.getItem("whishlist");
   return whishlistItems ? JSON.parse(whishlistItems) : [];
+};
+
+const reloadCheckout = () => {
+  let checkoutItems = getCartFromLocalStorage();
+  let cartItemSubtotal = calculateTotal(checkoutItems);
+  let vatPrice = parseFloat(cartItemSubtotal) * 0.15;
+  let totalPrice = cartItemSubtotal + vatPrice;
+  
+  const subtotal = document.querySelector("#subtotal");
+  const itemList = document.querySelector(".item-list");
+  const vat = document.querySelector("#vat-price");
+  const overallTotal = document.querySelector("#total-price");
+
+  const itemsToRender = checkoutItems
+    .map((item) => {
+      return `<div class="item">
+              <div class="cart-items">
+                ${item.itemName} <span class="item-no">X ${item.quantity}</span>
+              </div>
+              <span>${item.price}</span>
+            </div>`;
+    })
+    .join("");
+  if (!itemsToRender.length > 0) {
+    itemList.innerHTML = `<span> No items on the cart!</span>`;
+  } else {
+    itemList.innerHTML = itemsToRender;
+  }
+
+  vat.textContent = `R${vatPrice.toFixed(2)}`;
+  subtotal.textContent = `R${cartItemSubtotal.toFixed(2)}`;
+  overallTotal.textContent = `${totalPrice.toFixed(2)}`;
 };
 
 const renderCartProducts = (cartItems) => {
@@ -308,6 +341,7 @@ const renderCartProducts = (cartItems) => {
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
             render();
+            reloadCheckout()
           });
         }
 
@@ -327,6 +361,7 @@ const renderCartProducts = (cartItems) => {
               saveCartToLocalStorage(cartItems);
               updateItemCount(cartItems);
               render();
+              reloadCheckout()
             }
           });
         }
@@ -340,6 +375,7 @@ const renderCartProducts = (cartItems) => {
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
             render();
+            reloadCheckout()
           });
         }
       });
@@ -1262,9 +1298,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       updateSlide(currentText);
       startAutoChange();
     } else if (currentPage.includes("checkout")) {
+      reloadCheckout();
+
+      const radioButtons = document.querySelectorAll('input[type="radio"]');
+      const paymentDescriptions = document.querySelectorAll(
+        ".method-description"
+      );
+
+      radioButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          let currentElement = e.target.parentElement.parentElement;
+          let currentDecription = currentElement.querySelector(
+            ".method-description"
+          );
+          paymentDescriptions.forEach((description) => {
+            description.classList.remove("show");
+          });
+          currentDecription.classList.add("show");
+        });
+      });
     }
   } catch (error) {
-    console.log(listProducts);
     console.error("Error during page initialization:", error);
   }
   renderCartProducts(cartItems);

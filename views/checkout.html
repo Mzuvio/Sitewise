@@ -77,7 +77,7 @@
     <div class="shop-pg navigation-container" id="breadcrumb">
       <h2 class="page-header">Checkout</h2>
       <div class="navigation-links">
-        <a href="/index.html" class="home-link">Home</a>
+        <a href="shop.html" class="home-link">Shop</a>
         <span>></span>
         <a href="#" class="current-page-link">Checkout</a>
       </div>
@@ -98,7 +98,7 @@
       <div class="wishlist-items"></div>
 
       <div class="shopping-cart-buttons">
-        <a href="#" class="btn btn-checkout continue">Continue shopping</a>
+        <a href="shop.html" class="btn btn-checkout continue">Continue shopping</a>
       </div>
     </div>
     <!-- END WISHLIST-->
@@ -162,15 +162,80 @@
       <h2 class="billing-heading">Billing Details</h2>
       <div class="checkout-content">
         <div class="billing-form">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-input"
-              placeholder="Fullname"
-              required
-            />
-           
-          </div>
+          <form action="#">
+            <div class="form-group">
+              <div class="form-control">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Full Name*"
+                  required
+                />
+              </div>
+              <div class="form-control">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Last Name*"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-control">
+              <input
+                type="email"
+                class="form-input"
+                placeholder="Email*"
+              />
+            </div>
+            <div class="form-control">
+              <input
+                type="tel"
+                class="form-input"
+                placeholder="Phone*"
+              />
+            </div>
+            <div class="form-control">
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Country/Region*"
+              />
+            </div>
+            <div class="form-control">
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Street Address*"
+              />
+            </div>
+            <div class="form-group">
+              <div class="form-control">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Town/City*"
+                  required
+                />
+              </div>
+              <div class="form-control">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Zip Code*"
+                  required
+                />
+              </div>
+              <div class="form-control">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Province*"
+                  required
+                />
+              </div>
+            </div>
+          </form>
         </div>
         <div class="payment-wrapper">
           <div class="order-detail">
@@ -180,15 +245,10 @@
                 <h3>Product</h3>
                 <h3>Subtotal</h3>
               </li>
-              <li class="item-list">
-                <div class="cart-items">
-                  Small Gray Table <span class="item-no">X 5</span>
-                </div>
-                <span>R45000</span>
-              </li>
+              <li class="item-list"></li>
               <li class="subtotal">
                 <h3>Subtotal</h3>
-                <span class="subtotal">R45000</span>
+                <span class="subtotal" id="subtotal">R45000</span>
               </li>
               <li class="shipping">
                 <span>Shipping</span>
@@ -196,11 +256,11 @@
               </li>
               <li class="vat-container">
                 <span>VAT</span>
-                <span>R200</span>
+                <span id="vat-price">R200</span>
               </li>
               <li class="total-price">
                 <span>Total</span>
-                <span>R45200</span>
+                <span id="total-price">R45200</span>
               </li>
             </ul>
           </div>
@@ -244,7 +304,7 @@
               <label for="cash-delivery" class="custom-label active">
                 <input
                   type="radio"
-                  id="cash-delivery
+                  id="cash-delivery"
                   name="category"
                   class="custom-radio"
                 />
@@ -261,7 +321,7 @@
               <label for="paypal" class="custom-label active">
                 <input
                   type="radio"
-                  id="paypal
+                  id="paypal"
                   name="category"
                   class="custom-radio"
                 />
