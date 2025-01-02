@@ -243,7 +243,7 @@ const reloadCheckout = () => {
   let cartItemSubtotal = calculateTotal(checkoutItems);
   let vatPrice = parseFloat(cartItemSubtotal) * 0.15;
   let totalPrice = cartItemSubtotal + vatPrice;
-  
+
   const subtotal = document.querySelector("#subtotal");
   const itemList = document.querySelector(".item-list");
   const vat = document.querySelector("#vat-price");
@@ -341,7 +341,7 @@ const renderCartProducts = (cartItems) => {
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
             render();
-            reloadCheckout()
+            reloadCheckout();
           });
         }
 
@@ -361,7 +361,7 @@ const renderCartProducts = (cartItems) => {
               saveCartToLocalStorage(cartItems);
               updateItemCount(cartItems);
               render();
-              reloadCheckout()
+              reloadCheckout();
             }
           });
         }
@@ -375,7 +375,7 @@ const renderCartProducts = (cartItems) => {
             saveCartToLocalStorage(cartItems);
             updateItemCount(cartItems);
             render();
-            reloadCheckout()
+            reloadCheckout();
           });
         }
       });
@@ -1014,11 +1014,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    // const response = await fetch(
-    //   "https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json"
-    // );
+    const response = await fetch(
+      "https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json"
+    );
 
-    const response = await fetch("/data/products.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     listProducts = await response.json();
 
     function showPopup() {
