@@ -2295,7 +2295,7 @@ input::-moz-placeholder {
 }
 
 .item-details .button-area {
-  width: 100%;
+  width: fit-content;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -2303,8 +2303,8 @@ input::-moz-placeholder {
 }
 
 .button-area .quantity-area {
-  height: 100%;
   width: fit-content;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2680,14 +2680,15 @@ input::-moz-placeholder {
   .item-details .button-area {
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: start;
     flex-wrap: wrap;
-    width: max-content;
+    width:fit-content;
+    flex-direction: column;
     gap: 0.5rem;
   }
 
   .button-area .quantity-area {
-    width: fit-content;
+    flex: 1;
     gap: 0.5rem;
   }
 
@@ -2703,7 +2704,7 @@ input::-moz-placeholder {
   }
 
   .button-area .cart-add {
-    width: fit-content;
+    flex: 1;
     font-size: var(--fs-xsml);
   }
 
@@ -2792,13 +2793,13 @@ input::-moz-placeholder {
   .item-details .button-area {
     display: flex;
     justify-content: start;
-    align-items: center;
-    width: max-content;
+    align-items: start;
+    width: fit-content;
     gap: 0.5rem;
   }
 
   .button-area .quantity-area {
-    width: fit-content;
+    flex: 1;
     gap: 0.5rem;
   }
 
@@ -2811,6 +2812,11 @@ input::-moz-placeholder {
   .quantity-area .increase,
   .quantity-area .decrease {
     cursor: pointer;
+  }
+
+  .button-area .cart-add {
+    flex: 1;
+    font-size: var(--fs-xsml);
   }
 }
 
@@ -3927,6 +3933,7 @@ input::-moz-placeholder {
   font-size: var(--fs-sml);
   font-weight: var(--fw-normal);
   margin-bottom: 1rem;
+  
 }
 
 .main-content .btn.btn.underline {

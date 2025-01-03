@@ -575,7 +575,7 @@ const renderChairsForHomePage = (products) => {
     }
 
     let displayItems = products
-      .filter((product, index) => index < 8)
+    .slice(0, 8)
       .map((product) => {
         function formatPrice(price) {
           const priceString = price.toFixed(2);
@@ -820,9 +820,6 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
     const chairDisplayWrapper = document.querySelector(".chairs-display");
     chairDisplayWrapper.innerHTML = "";
     const viewedCount = document.querySelector(".viewed-count");
-    if (products.length > 0) {
-      viewedCount.textContent = Math.min(loadmore, products.length);
-    }
 
     if (!chairDisplayWrapper) {
       console.log(
@@ -830,8 +827,10 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
       );
       return;
     }
+    viewedCount.textContent = Math.min(loadmore, products.length);
 
     let displayItems = products
+      .slice(0, loadmore)
       .map((product) => {
         function formatPrice(price) {
           const priceString = price.toFixed(2);
@@ -1074,21 +1073,16 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
     });
 
     if (loadMoreBtn) {
+      loadMoreBtn.style.display =
+        loadmore >= products.length ? "none" : "inline";
       loadMoreBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
         let notLoaded = products.length - loadmore;
-
         if (notLoaded > 0) {
           loadmore += Math.min(8, notLoaded);
-
           viewedCount.textContent = Math.min(loadmore, products.length);
-
           renderChairsForShopPage(products, loadmore);
-        }
-
-        if (loadmore >= products.length) {
-          loadMoreBtn.style.display = "none";
         }
       });
     }
