@@ -129,10 +129,10 @@ if (closeBtn) {
 }
 
 const cartItemContainer = document.querySelector(".cart-items");
-const productFilters = document.querySelectorAll(".filter-item ");
 const itemCount = document.querySelector(".item-count");
 const favorite = document.querySelectorAll(".product-favorite");
 const newsletterBtn = document.querySelector(".newsletter-btn");
+const popupWrapper = document.querySelector(".popup-wrapper");
 
 if (newsletterBtn) {
   newsletterBtn.addEventListener("click", (e) => {
@@ -140,38 +140,11 @@ if (newsletterBtn) {
   });
 }
 
-let listProducts = [];
-
-if (productFilters.length > 0) {
-  productFilters[0].classList.add("active");
-}
-
-productFilters.forEach((filter) => {
-  filter.addEventListener("click", (e) => {
-    productFilters.forEach((f) => f.classList.remove("active"));
-    filter.classList.add("active");
-    const category = e.currentTarget.dataset.id.toLowerCase();
-    displayFiltered(category, listProducts);
-  });
-});
-
-function displayFiltered(category, listProducts) {
-  const filteredProducts = listProducts.filter((product) => {
-    return product.categoryType.toLowerCase() === category;
-  });
-  if (category == "all") {
-    renderChairsForHomePage(listProducts);
-  } else {
-    renderChairsForHomePage(filteredProducts);
-  }
-}
-
 function closeCartPopup() {
   document.getElementById("cart-notification").classList.remove("show");
 }
 
 function showCartPopup() {
-  console.log("Show");
   const popup = document.getElementById("cart-notification");
   popup.classList.add("show");
 
@@ -179,8 +152,6 @@ function showCartPopup() {
     closeCartPopup();
   }, 2000);
 }
-
-const loadCheckout = () => {};
 
 let cartItems = [];
 let wishlistItems = [];
@@ -191,7 +162,7 @@ function calculateTotal(cartItems) {
     total = 0;
   } else {
     total = cartItems.reduce(
-      (acc, item) => acc + item.basePrice * item.quantity,
+      (acc, item) => acc + item.itemPrice * item.quantity,
       0
     );
   }
@@ -238,33 +209,139 @@ const getWhishlistFromLocalStorage = () => {
   return whishlistItems ? JSON.parse(whishlistItems) : [];
 };
 
+function showPopup() {
+  popupWrapper.classList.add("show");
+}
+function hidePopup() {
+  popupWrapper.classList.remove("show");
+}
+
+const renderCardContent = (productElement, productDisplay) => {
+  const addToCart = document.querySelector(".product-display .cart-add");
+  let quantity = productDisplay.querySelector(".product-display .quantity");
+  const quantityBtns = document.querySelectorAll(".quantity-area .icon");
+
+  let imgURL = productElement.querySelector(".image-card img").src;
+  let itemPrice = "";
+  let basePrice = "";
+  let salePrice = "";
+  let id = productElement.dataset.id;
+  productDisplay.dataset.id = id;
+  let itemName = productElement.dataset.itemName;
+  let hasOnsale = productElement.querySelector(".onsale");
+
+  if (!hasOnsale) {
+    basePrice = productElement.querySelector(".product-price").textContent;
+  } else {
+    basePrice = hasOnsale.textContent;
+    salePrice = productElement.querySelector(".sale-price").textContent;
+  }
+
+  let chairImage = document.querySelector(".left-side img");
+  let chairName = document.querySelector(".chair-name");
+  let chairPrice = document.querySelector(".chair-price .onsale");
+  let chairSalePrice = document.querySelector(".chair-price .sale-price");
+  basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
+  salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
+
+  chairImage.src = imgURL;
+  chairName.textContent = itemName;
+  if (salePrice) {
+    chairPrice.style.color = "#d3d3d3";
+    chairPrice.style.textDecoration = "line-through";
+    chairSalePrice.textContent = `R${salePrice}`;
+    chairPrice.textContent = `R${basePrice}`;
+    itemPrice = salePrice;
+  } else {
+    chairPrice.textContent = `R${basePrice}`;
+    chairPrice.style.textDecoration = "none";
+    chairPrice.style.color = "#2d2d2d";
+    chairSalePrice.textContent = "";
+    itemPrice = basePrice;
+  }
+
+  itemPrice = parseFloat(itemPrice);
+
+  let quant = parseInt(quantity.textContent);
+
+  if (quantityBtns.length > 0) {
+    quantityBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        let currentTarget = e.target;
+        if (currentTarget.closest(".decrease")) {
+          if (quant > 1) {
+            quant--;
+            quantity.textContent = quant;
+          }
+        } else if (currentTarget.closest(".increase")) {
+          quant++;
+          quantity.textContent = quant;
+        }
+      });
+    });
+  }
+
+  if (addToCart) {
+    addToCart.onclick = () => {
+      quantity = parseFloat(quantity.textContent);
+      const storedCart = getCartFromLocalStorage();
+      cartItems = storedCart;
+      if (id) {
+        let exists = cartItems.find((item) => item.id === id);
+
+        if (!exists) {
+          cartItems.push({
+            id,
+            imgURL,
+            itemName,
+            price: `R${itemPrice.toFixed(2)}`,
+            itemPrice,
+            quantity: quantity,
+          });
+          saveCartToLocalStorage(cartItems);
+          updateItemCount(cartItems);
+          showCartPopup();
+        } else {
+          showPopup();
+        }
+      }
+      renderCartProducts(cartItems);
+    };
+  }
+};
+
 // RELOAD CHECKOUT
 
-const reloadCheckout = () => {
+let reloadCheckout = () => {
   let checkoutItems = getCartFromLocalStorage();
   let cartItemSubtotal = calculateTotal(checkoutItems);
   let vatPrice = parseFloat(cartItemSubtotal) * 0.15;
   let totalPrice = cartItemSubtotal + vatPrice;
 
-  const subtotal = document.querySelector("#subtotal");
-  const itemList = document.querySelector(".item-list");
-  const vat = document.querySelector("#vat-price");
-  const overallTotal = document.querySelector("#total-price");
+  let subtotal = document.querySelector("#subtotal");
+  let itemList = document.querySelector(".item-list");
+  let vat = document.querySelector("#vat-price");
+  let overallTotal = document.querySelector("#total-price");
+  let itemsToRender = "";
+  if (itemList) {
+    itemsToRender = checkoutItems
+      .map((item) => {
+        return `<div class="item">
+            <div class="cart-items">
+              ${item.itemName} <span class="item-no">X ${item.quantity}</span>
+            </div>
+            <span>${item.price}</span>
+          </div>`;
+      })
+      .join("");
 
-  const itemsToRender = checkoutItems
-    .map((item) => {
-      return `<div class="item">
-              <div class="cart-items">
-                ${item.itemName} <span class="item-no">X ${item.quantity}</span>
-              </div>
-              <span>${item.price}</span>
-            </div>`;
-    })
-    .join("");
-  if (!itemsToRender.length > 0) {
-    itemList.innerHTML = `<span> No items on the cart!</span>`;
+    if (!itemsToRender.length > 0) {
+      itemList.innerHTML = `<span> No items on the cart!</span>`;
+    } else {
+      itemList.innerHTML = itemsToRender;
+    }
   } else {
-    itemList.innerHTML = itemsToRender;
+    return;
   }
 
   vat.textContent = `R${vatPrice.toFixed(2)}`;
@@ -359,6 +436,7 @@ const renderCartProducts = (cartItems) => {
               cartItems[index].price = `R${newPrice.toFixed(2)}`;
               saveCartToLocalStorage(cartItems);
               render();
+              reloadCheckout();
             }
             if (cartItems[index].quantity === 1) {
               clickedStates[index] = false;
@@ -465,10 +543,12 @@ const renderWishlistProducts = (wishlistItems) => {
     const removeButtons = wishlistContainer.querySelectorAll(
       ".remove-to-wishlist"
     );
+
     removeButtons.forEach((btn) => {
       const index = parseInt(btn.dataset.index, 10);
       btn.addEventListener("click", () => {
         wishlistItems.splice(index, 1);
+
         saveWishlistToLocalStorage(wishlistItems);
         updateWishlistCount(wishlistItems);
         renderWishlistProducts(wishlistItems);
@@ -492,46 +572,54 @@ const renderChairsForHomePage = (products) => {
       return;
     }
 
-    console.log(products);
-
     let displayItems = products
-      .map((product, index) => {
-        if (index < 8) {
-          return `<div class="product-item" data-id="${
-            product.id
-          }" data-category="${product.category}" data-item-name="${
-            product.name
-          }">
-            <div class="product-image">
-              <div>${
-                product.sale ? '<span class="for-sale">Sale</span>' : ""
-              } </div>
-              <div class="image-card">  <img src="${product.image}" alt="${
-            product.name
-          }"></div>
-              <div class="cart-btn">
-                <span class="icon"><ion-icon name="bag-outline"></ion-icon></span>
-                Add To Cart
-              </div>
-            </div>
-            <div class="product-details">
-              <span class="product-category">${product.category}</span>
-              <div class="product-favorite">
-                <ion-icon name="${
-                  product.favoriteIcon
-                }" class="favorite-icon"></ion-icon>
-              </div>
-            </div>
-            <div class="product-name">${product.name}</div>
-            <div class="product-price">${product.price}</div>
-          </div>`;
+      .filter((product, index) => index < 8)
+      .map((product) => {
+        function formatPrice(price) {
+          const priceString = price.toFixed(2);
+          const parts = priceString.split(".");
+          const wholePart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          return `R${wholePart}.${parts[1]}`;
         }
+        return `
+      <div class="product-item" data-id="${product.id}" data-category="${
+          product.category
+        }" data-item-name="${product.name}">
+        <div class="product-image">
+          <div>${product.sale ? '<span class="for-sale">Sale</span>' : ""}</div>
+          <div class="image-card"><img src="${product.image}" alt="${
+          product.name
+        }"></div>
+          <div class="cart-btn">
+            <span class="icon"><ion-icon name="bag-outline"></ion-icon></span>
+            Add To Cart
+          </div>
+        </div>
+        <div class="product-details">
+          <span class="product-category">${product.category}</span>
+          <div class="product-favorite">
+            <ion-icon name="${
+              product.favoriteIcon
+            }" class="favorite-icon"></ion-icon>
+          </div>
+        </div>
+        <div class="product-name">${product.name}</div>
+        ${
+          !product.sale
+            ? `<div class="product-price">${product.price}</div>`
+            : `<div class="product-price"><span class='onsale'>${
+                product.price
+              }</span> <span class="sale-price">${formatPrice(
+                product.basePrice - (product.basePrice * 0.4).toFixed(2)
+              )}</span></div>`
+        }
+      </div>`;
       })
       .join("");
     productContainer.innerHTML = displayItems;
 
     const cartBtn = document.querySelectorAll(".cart-btn");
-    const popupWrapper = document.querySelector(".popup-wrapper");
+
     const closePopupButton = document.querySelector(".popup-close ion-icon");
     const imageCards = document.querySelectorAll(".image-card");
     const productDisplay = document.querySelector(".product-display");
@@ -539,28 +627,6 @@ const renderChairsForHomePage = (products) => {
       ".product-display .icon-close"
     );
     const whishlistHeart = document.querySelector(".wishlist-area ion-icon");
-    const quantityBtns = document.querySelectorAll(".quantity-area .icon");
-    const productQuantity = document.querySelector(".quantity-area .quantity");
-    const addToCart = document.querySelector(".product-display .cart-add");
-
-    let quantityNo = parseInt(productQuantity.textContent);
-
-    if (quantityBtns.length > 0) {
-      quantityBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          let currentTarget = e.target;
-          if (currentTarget.closest(".decrease")) {
-            if (quantityNo > 1) {
-              quantityNo--;
-              productQuantity.textContent = quantityNo;
-            }
-          } else if (currentTarget.closest(".increase")) {
-            quantityNo++;
-            productQuantity.textContent = quantityNo;
-          }
-        });
-      });
-    }
 
     let wishlist = getWishlistFromLocalStorage();
 
@@ -580,15 +646,33 @@ const renderChairsForHomePage = (products) => {
 
       icon.addEventListener("click", (e) => {
         e.stopPropagation();
-
         const productElement = icon.closest(".product-item");
         const productId = productElement.dataset.id;
         const productName =
           productElement.querySelector(".product-name").textContent;
-        const productPrice =
-          productElement.querySelector(".product-price").textContent;
+        const productPrice = productElement.querySelector(".product-price");
         const productImage =
           productElement.querySelector(".image-card img").src;
+        let basePrice = "";
+        let salePrice = "";
+        let itemPrice = "";
+        let hasOnsale = productPrice.querySelector(".onsale");
+
+        if (!hasOnsale) {
+          basePrice =
+            productElement.querySelector(".product-price").textContent;
+        } else {
+          salePrice = productElement.querySelector(".sale-price").textContent;
+        }
+
+        basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
+        salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
+
+        if (salePrice) {
+          itemPrice = `R${salePrice}`;
+        } else {
+          itemPrice = `R${basePrice}`;
+        }
 
         const productInWishlist = wishlist.some(
           (item) => item.id === productId
@@ -602,7 +686,7 @@ const renderChairsForHomePage = (products) => {
           wishlist.push({
             id: productId,
             name: productName,
-            price: productPrice,
+            price: itemPrice,
             image: productImage,
           });
           icon.name = "heart";
@@ -619,54 +703,12 @@ const renderChairsForHomePage = (products) => {
       image.addEventListener("click", (e) => {
         let productElement = e.target.parentElement.parentElement.parentElement;
         const whishlistIcon = document.querySelector(".display-wishlist-icon");
-        let imgURL = productElement.querySelector(".image-card img").src;
-        let id = productElement.dataset.id;
-        productDisplay.dataset.id = id;
-        let itemName = productElement.dataset.itemName;
-        let basePrice =
-          productElement.querySelector(".product-price").textContent;
 
-        let chairImage = document.querySelector(".left-side img");
-        let chairName = document.querySelector(".chair-name");
-        let chairPrice = document.querySelector(".chair-price");
-        basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
-
-        chairImage.src = imgURL;
-        chairName.textContent = itemName;
-        chairPrice.textContent = `R${basePrice}`;
-
+        renderCardContent(productElement, productDisplay);
         productDisplay.classList.add("show");
 
         if (whishlistIcon) {
           renderDisplayWishilist(whishlistIcon, productDisplay);
-        }
-
-        if (addToCart) {
-          addToCart.onclick = () => {
-            let quantity = parseInt(Number(productQuantity.textContent));
-            const storedCart = getCartFromLocalStorage();
-            cartItems = storedCart;
-            if (id) {
-              let exists = cartItems.find((item) => item.id === id);
-
-              if (!exists) {
-                cartItems.push({
-                  id,
-                  imgURL,
-                  itemName,
-                  price: `R${basePrice.toFixed(2)}`,
-                  basePrice,
-                  quantity: quantity,
-                });
-                saveCartToLocalStorage(cartItems);
-                updateItemCount(cartItems);
-                showCartPopup();
-              } else {
-                showPopup();
-              }
-            }
-            renderCartProducts(cartItems);
-          };
         }
       });
     });
@@ -678,7 +720,8 @@ const renderChairsForHomePage = (products) => {
           whishlistHeart.name = "heart-outline";
           whishlistHeart.style.color = "#2d2a32";
         }
-        productQuantity.textContent = "1";
+        productDisplay.querySelector(".product-display .quantity").textContent =
+          "1";
       }
     });
 
@@ -690,17 +733,12 @@ const renderChairsForHomePage = (products) => {
             whishlistHeart.name = "heart-outline";
             whishlistHeart.style.color = "#2d2a32";
           }
-          productQuantity.textContent = "1";
+          productDisplay.querySelector(
+            ".product-display .quantity"
+          ).textContent = "1";
         }
       }
     });
-
-    function showPopup() {
-      popupWrapper.classList.add("show");
-    }
-    function hidePopup() {
-      popupWrapper.classList.remove("show");
-    }
 
     window.addEventListener("click", (e) => {
       if (e.target === popupWrapper) {
@@ -720,9 +758,30 @@ const renderChairsForHomePage = (products) => {
         let imgURL = productElement.querySelector(".image-card img").src;
         let id = productElement.dataset.id;
         let itemName = productElement.dataset.itemName;
-        let basePrice =
-          productElement.querySelector(".product-price").textContent;
+        let productPrice = productElement.querySelector(".product-price");
+
+        let basePrice = "";
+        let salePrice = "";
+        let itemPrice = "";
+        let hasOnsale = productPrice.querySelector(".onsale");
+
+        if (!hasOnsale) {
+          basePrice =
+            productElement.querySelector(".product-price").textContent;
+        } else {
+          salePrice = productElement.querySelector(".sale-price").textContent;
+        }
+
         basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
+        salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
+
+        if (salePrice) {
+          itemPrice = salePrice;
+        } else {
+          itemPrice = basePrice;
+        }
+
+        itemPrice = parseFloat(itemPrice);
 
         if (id) {
           let exists = cartItems.find((item) => item.id === id);
@@ -732,8 +791,8 @@ const renderChairsForHomePage = (products) => {
               id,
               imgURL,
               itemName,
-              price: `R${basePrice.toFixed(2)}`,
-              basePrice,
+              price: `R${itemPrice.toFixed(2)}`,
+              itemPrice,
               quantity: 1,
             });
             saveCartToLocalStorage(cartItems);
@@ -770,45 +829,50 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
       return;
     }
 
-
-
     let displayItems = products
-      .map((product, index) => {
-        if (index < loadmore) {
-          return `<div class="product-item" data-id="${
-            product.id
-          }" data-category="${product.category}" data-item-name="${
-            product.name
-          }">
-            <div class="product-image">
-              <div>${
-                product.sale ? '<span class="for-sale">Sale</span>' : ""
-              } </div>
-              <div class="image-card">  <img src="${product.image}" alt="${
-            product.name
-          }"></div>
-              <div class="cart-btn">
-                <span class="icon"><ion-icon name="bag-outline"></ion-icon></span>
-                Add To Cart
-              </div>
-            </div>
-            <div class="product-details">
-              <span class="product-category">${product.category}</span>
-              <div class="product-favorite">
-                <ion-icon name="${
-                  product.favoriteIcon
-                }" class="favorite-icon"></ion-icon>
-              </div>
-            </div>
-            <div class="product-name">${product.name}</div>
-            <div class="product-price">${product.price}</div>
-          </div>`;
+      .map((product) => {
+        function formatPrice(price) {
+          const priceString = price.toFixed(2);
+          const parts = priceString.split(".");
+          const wholePart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          return `R${wholePart}.${parts[1]}`;
         }
+        return `
+    <div class="product-item" data-id="${product.id}" data-category="${
+          product.category
+        }" data-item-name="${product.name}">
+      <div class="product-image">
+        <div>${product.sale ? '<span class="for-sale">Sale</span>' : ""}</div>
+        <div class="image-card"><img src="${product.image}" alt="${
+          product.name
+        }"></div>
+        <div class="cart-btn">
+          <span class="icon"><ion-icon name="bag-outline"></ion-icon></span>
+          Add To Cart
+        </div>
+      </div>
+      <div class="product-details">
+        <span class="product-category">${product.category}</span>
+        <div class="product-favorite">
+          <ion-icon name="${
+            product.favoriteIcon
+          }" class="favorite-icon"></ion-icon>
+        </div>
+      </div>
+      <div class="product-name">${product.name}</div>
+      ${
+        !product.sale
+          ? `<div class="product-price">${product.price}</div>`
+          : `<div class="product-price"><span class='onsale'>${
+              product.price
+            }</span> <span class="sale-price">${formatPrice(
+              product.basePrice - (product.basePrice * 0.4).toFixed(2)
+            )}</span></div>`
+      }
+    </div>`;
       })
       .join("");
     chairDisplayWrapper.innerHTML = displayItems;
-
-    
 
     const favoriteIcons = document.querySelectorAll(".favorite-icon");
     const cartBtn = document.querySelectorAll(".cart-btn");
@@ -820,29 +884,9 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
       ".product-display .icon-close"
     );
     const whishlistHeart = document.querySelector(".wishlist-area ion-icon");
-    const quantityBtns = document.querySelectorAll(".quantity-area .icon");
-    const productQuantity = document.querySelector(".quantity-area .quantity");
-    const addToCart = document.querySelector(".product-display .cart-add");
     const loadMoreBtn = document.querySelector(".progress-summary-btn");
 
-    let quantityNo = parseInt(productQuantity.textContent);
-
-    if (quantityBtns.length > 0) {
-      quantityBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          let currentTarget = e.target;
-          if (currentTarget.closest(".decrease")) {
-            if (quantityNo > 1) {
-              quantityNo--;
-              productQuantity.textContent = quantityNo;
-            }
-          } else if (currentTarget.closest(".increase")) {
-            quantityNo++;
-            productQuantity.textContent = quantityNo;
-          }
-        });
-      });
-    }
+    let wishlist = getWishlistFromLocalStorage();
 
     if (whishlistHeart) {
       whishlistHeart.addEventListener("click", (e) => {
@@ -861,50 +905,8 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
     imageCards.forEach((image) => {
       image.addEventListener("click", (e) => {
         let productElement = e.target.parentElement.parentElement.parentElement;
-        let imgURL = productElement.querySelector(".image-card img").src;
-        let id = productElement.dataset.id;
-        let itemName = productElement.dataset.itemName;
-        let basePrice =
-          productElement.querySelector(".product-price").textContent;
-
-        let chairImage = document.querySelector(".left-side img");
-        let chairName = document.querySelector(".chair-name");
-        let chairPrice = document.querySelector(".chair-price");
-
-        basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
-
-        chairImage.src = imgURL;
-        chairName.textContent = itemName;
-        chairPrice.textContent = `R${basePrice}`;
-
+        renderCardContent(productElement, productDisplay);
         productDisplay.classList.add("show");
-
-        if (addToCart) {
-          addToCart.onclick = () => {
-            const storedCart = getCartFromLocalStorage();
-            cartItems = storedCart;
-            if (id) {
-              let exists = cartItems.find((item) => item.id === id);
-
-              if (!exists) {
-                cartItems.push({
-                  id,
-                  imgURL,
-                  itemName,
-                  price: `R${basePrice.toFixed(2)}`,
-                  basePrice,
-                  quantity: 1,
-                });
-                saveCartToLocalStorage(cartItems);
-                updateItemCount(cartItems);
-                showCartPopup();
-              } else {
-                showPopup();
-              }
-            }
-            renderCartProducts(cartItems);
-          };
-        }
       });
     });
 
@@ -915,7 +917,8 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
           whishlistHeart.name = "heart-outline";
           whishlistHeart.style.color = "#2d2a32";
         }
-        productQuantity.textContent = "1";
+        productDisplay.querySelector(".product-display .quantity").textContent =
+          "1";
       }
     });
 
@@ -927,17 +930,12 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
             whishlistHeart.name = "heart-outline";
             whishlistHeart.style.color = "#2d2a32";
           }
-          productQuantity.textContent = "1";
+          productDisplay.querySelector(
+            ".product-display .quantity"
+          ).textContent = "1";
         }
       }
     });
-
-    function showPopup() {
-      popupWrapper.classList.add("show");
-    }
-    function hidePopup() {
-      popupWrapper.classList.remove("show");
-    }
 
     window.addEventListener("click", (e) => {
       if (e.target === popupWrapper) {
@@ -957,9 +955,30 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
         let imgURL = productElement.querySelector(".image-card img").src;
         let id = productElement.dataset.id;
         let itemName = productElement.dataset.itemName;
-        let basePrice =
-          productElement.querySelector(".product-price").textContent;
+        let productPrice = productElement.querySelector(".product-price");
+
+        let basePrice = "";
+        let salePrice = "";
+        let itemPrice = "";
+        let hasOnsale = productPrice.querySelector(".onsale");
+
+        if (!hasOnsale) {
+          basePrice =
+            productElement.querySelector(".product-price").textContent;
+        } else {
+          salePrice = productElement.querySelector(".sale-price").textContent;
+        }
+
         basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
+        salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
+
+        if (salePrice) {
+          itemPrice = salePrice;
+        } else {
+          itemPrice = basePrice;
+        }
+
+        itemPrice = parseFloat(itemPrice);
 
         if (id) {
           let exists = cartItems.find((item) => item.id === id);
@@ -969,8 +988,8 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
               id,
               imgURL,
               itemName,
-              price: `R${basePrice.toFixed(2)}`,
-              basePrice,
+              price: `R${itemPrice.toFixed(2)}`,
+              itemPrice,
               quantity: 1,
             });
             saveCartToLocalStorage(cartItems);
@@ -986,16 +1005,69 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
     });
 
     favoriteIcons.forEach((icon) => {
+      const productItem = icon.closest(".product-item");
+      const productId = productItem.dataset.id;
+
+      if (wishlist.some((item) => item.id === productId)) {
+        icon.name = "heart";
+        icon.style.color = "#2d2a32";
+      } else {
+        icon.name = "heart-outline";
+        icon.style.color = "#2d2a32";
+      }
+
       icon.addEventListener("click", (e) => {
         e.stopPropagation();
+        const productElement = icon.closest(".product-item");
+        const productId = productElement.dataset.id;
+        const productName =
+          productElement.querySelector(".product-name").textContent;
+        const productPrice = productElement.querySelector(".product-price");
+        const productImage =
+          productElement.querySelector(".image-card img").src;
+        let basePrice = "";
+        let salePrice = "";
+        let itemPrice = "";
+        let hasOnsale = productPrice.querySelector(".onsale");
 
-        if (icon.name === "heart-outline") {
-          icon.name = "heart";
-          icon.style.color = "#2d2a32";
+        if (!hasOnsale) {
+          basePrice =
+            productElement.querySelector(".product-price").textContent;
         } else {
+          salePrice = productElement.querySelector(".sale-price").textContent;
+        }
+
+        basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
+        salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
+
+        if (salePrice) {
+          itemPrice = `R${salePrice}`;
+        } else {
+          itemPrice = `R${basePrice}`;
+        }
+
+        const productInWishlist = wishlist.some(
+          (item) => item.id === productId
+        );
+
+        if (productInWishlist) {
+          wishlist = wishlist.filter((item) => item.id !== productId);
           icon.name = "heart-outline";
           icon.style.color = "#2d2a32";
+        } else {
+          wishlist.push({
+            id: productId,
+            name: productName,
+            price: itemPrice,
+            image: productImage,
+          });
+          icon.name = "heart";
+          icon.style.color = "#2d2a32";
         }
+
+        saveWishlistToLocalStorage(wishlist);
+        updateWishlistCount(wishlist);
+        renderWishlistProducts(wishlist);
       });
     });
 
@@ -1041,10 +1113,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     listProducts = await response.json();
 
-    function showPopup() {
-      popupWrapper.classList.add("show");
-    }
-
     window.addEventListener("click", (e) => {
       if (e.target === popupWrapper) {
         if (popupWrapper.classList.contains("show")) {
@@ -1054,8 +1122,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     if (currentPage.includes("index")) {
-      renderChairsForHomePage(listProducts);
+      const productFilters = document.querySelectorAll(".filter-item ");
 
+      if (productFilters.length > 0) {
+        productFilters[0].classList.add("active");
+      }
+
+      productFilters.forEach((filter) => {
+        filter.addEventListener("click", (e) => {
+          productFilters.forEach((f) => f.classList.remove("active"));
+          filter.classList.add("active");
+          const category = e.currentTarget.dataset.id.toLowerCase();
+          displayFiltered(category, listProducts);
+        });
+      });
+
+      function displayFiltered(category, listProducts) {
+        const filteredProducts = listProducts.filter((product) => {
+          return product.categoryType.toLowerCase() === category;
+        });
+        if (category == "all") {
+          renderChairsForHomePage(listProducts);
+        } else {
+          renderChairsForHomePage(filteredProducts);
+        }
+      }
+
+      if (listProducts && listProducts.length > 0) {
+        renderChairsForHomePage(listProducts);
+      } else {
+        console.warn("Products array is empty on initial load.");
+      }
       const defaultFilter = document.querySelector(
         '.filter-item[data-id="all"]'
       );
@@ -1225,9 +1322,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       sidebarFilters.forEach((filter) => {
         filter.addEventListener("click", (e) => {
           e.preventDefault();
-          sidebarFilters.forEach(priceFilter=> {
-            priceFilter.classList.remove('active')
-          })
+          sidebarFilters.forEach((priceFilter) => {
+            priceFilter.classList.remove("active");
+          });
           let range = e.target.dataset.range;
           if (!range) {
             console.error("Price range not found on clicked element.");
@@ -1235,7 +1332,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
           let filteredProducts = filterByPrice(listProducts, range);
           renderChairsForShopPage(filteredProducts);
-          e.target.parentElement.classList.add('active')
+          e.target.parentElement.classList.add("active");
         });
       });
 
