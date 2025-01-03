@@ -1034,7 +1034,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    const response = await fetch("/data/products.json");
+    const response = await fetch("./data/products.json");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
