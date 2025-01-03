@@ -3666,6 +3666,14 @@ input::-moz-placeholder {
   font-weight: var(--fw-normal);
 }
 
+.price-list.sidebar-filter li:hover{
+  background-color: #fcf7f8;
+}
+
+.price-list.sidebar-filter .active {
+  background-color: #fcf7f8;
+}
+
 .custom-label {
   display: block;
   position: relative;

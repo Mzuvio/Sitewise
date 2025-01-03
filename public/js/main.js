@@ -238,6 +238,8 @@ const getWhishlistFromLocalStorage = () => {
   return whishlistItems ? JSON.parse(whishlistItems) : [];
 };
 
+// RELOAD CHECKOUT
+
 const reloadCheckout = () => {
   let checkoutItems = getCartFromLocalStorage();
   let cartItemSubtotal = calculateTotal(checkoutItems);
@@ -269,6 +271,8 @@ const reloadCheckout = () => {
   subtotal.textContent = `R${cartItemSubtotal.toFixed(2)}`;
   overallTotal.textContent = `${totalPrice.toFixed(2)}`;
 };
+
+// RENDER TO CART
 
 const renderCartProducts = (cartItems) => {
   let clickedStates = cartItems.map(() => false);
@@ -386,6 +390,8 @@ const renderCartProducts = (cartItems) => {
   render();
 };
 
+// RENDER DISPLAY CHECKOUT
+
 const renderDisplayWishilist = (target, displayCard) => {
   let wishlist = getWishlistFromLocalStorage();
   target.addEventListener("click", (e) => {
@@ -419,6 +425,8 @@ const renderDisplayWishilist = (target, displayCard) => {
     renderWishlistProducts(wishlist);
   });
 };
+
+// RENDER WISHLIST
 
 const renderWishlistProducts = (wishlistItems) => {
   const wishlistContainer = document.querySelector(".wishlist-items");
@@ -471,7 +479,9 @@ const renderWishlistProducts = (wishlistItems) => {
   wishlistCount.textContent = wishlistItems.length;
 };
 
-const renderChairsForHomePage = (listProducts) => {
+// RENDER CHAIRS ON HOME PAGE
+
+const renderChairsForHomePage = (products) => {
   try {
     const productContainer = document.querySelector(".product-container");
     productContainer.innerHTML = "";
@@ -482,7 +492,7 @@ const renderChairsForHomePage = (listProducts) => {
       return;
     }
 
-    let displayItems = listProducts
+    let displayItems = products
       .map((product, index) => {
         if (index < 8) {
           return `<div class="product-item" data-id="${
@@ -740,6 +750,8 @@ const renderChairsForHomePage = (listProducts) => {
   }
 };
 
+// RENDER CHAIRS ON SHOP PAGE
+
 const renderChairsForShopPage = (products, loadmore = 8) => {
   try {
     const chairDisplayWrapper = document.querySelector(".chairs-display");
@@ -756,7 +768,9 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
       return;
     }
 
-    let displayItems = listProducts
+
+
+    let displayItems = products
       .map((product, index) => {
         if (index < loadmore) {
           return `<div class="product-item" data-id="${
@@ -791,6 +805,8 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
       })
       .join("");
     chairDisplayWrapper.innerHTML = displayItems;
+
+    
 
     const favoriteIcons = document.querySelectorAll(".favorite-icon");
     const cartBtn = document.querySelectorAll(".cart-btn");
@@ -1005,6 +1021,8 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
   }
 };
 
+// MAIN FUNCTION
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const popupWrapper = document.querySelector(".popup-wrapper");
@@ -1014,9 +1032,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
 
-    const response = await fetch(
-      "https://raw.githubusercontent.com/Mzuvio/Sitewise/master/data/products.json"
-    );
+    const response = await fetch("/data/products.json");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -1115,7 +1131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const selectedFilter = document.querySelector(".select-selected");
       const sortItems = document.querySelectorAll(".select-items .item");
       const progressTotal = document.querySelector(".total-count");
-      const sidebarFilters = document.querySelectorAll(".sidebar-filter a");
+      const sidebarFilters = document.querySelectorAll(".price-list li");
       const colorItems = document.querySelectorAll(".color-item input");
 
       filterIcon.addEventListener("click", () => {
@@ -1207,6 +1223,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       sidebarFilters.forEach((filter) => {
         filter.addEventListener("click", (e) => {
           e.preventDefault();
+          sidebarFilters.forEach(priceFilter=> {
+            priceFilter.classList.remove('active')
+          })
           let range = e.target.dataset.range;
           if (!range) {
             console.error("Price range not found on clicked element.");
@@ -1214,6 +1233,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
           let filteredProducts = filterByPrice(listProducts, range);
           renderChairsForShopPage(filteredProducts);
+          e.target.parentElement.classList.add('active')
         });
       });
 
