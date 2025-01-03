@@ -492,6 +492,8 @@ const renderChairsForHomePage = (products) => {
       return;
     }
 
+    console.log(products);
+
     let displayItems = products
       .map((product, index) => {
         if (index < 8) {
