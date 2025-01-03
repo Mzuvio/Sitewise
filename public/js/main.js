@@ -575,23 +575,24 @@ const renderChairsForHomePage = (products) => {
     }
 
     let displayItems = products
-    .slice(0, 8)
-      .map((product) => {
-        function formatPrice(price) {
-          const priceString = price.toFixed(2);
-          const parts = priceString.split(".");
-          const wholePart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          return `R${wholePart}.${parts[1]}`;
-        }
-        return `
+
+      .map((product, index) => {
+        if (index < 8) {
+          function formatPrice(price) {
+            const priceString = price.toFixed(2);
+            const parts = priceString.split(".");
+            const wholePart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return `R${wholePart}.${parts[1]}`;
+          }
+          return `
       <div class="product-item" data-id="${product.id}" data-category="${
-          product.category
-        }" data-item-name="${product.name}">
+            product.category
+          }" data-item-name="${product.name}">
         <div class="product-image">
           <div>${product.sale ? '<span class="for-sale">Sale</span>' : ""}</div>
           <div class="image-card"><img src="${product.image}" alt="${
-          product.name
-        }"></div>
+            product.name
+          }"></div>
           <div class="cart-btn">
             <span class="icon"><ion-icon name="bag-outline"></ion-icon></span>
             Add To Cart
@@ -616,6 +617,7 @@ const renderChairsForHomePage = (products) => {
               )}</span></div>`
         }
       </div>`;
+        }
       })
       .join("");
     productContainer.innerHTML = displayItems;
@@ -830,23 +832,23 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
     viewedCount.textContent = Math.min(loadmore, products.length);
 
     let displayItems = products
-      .slice(0, loadmore)
-      .map((product) => {
-        function formatPrice(price) {
-          const priceString = price.toFixed(2);
-          const parts = priceString.split(".");
-          const wholePart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          return `R${wholePart}.${parts[1]}`;
-        }
-        return `
+      .map((product, index) => {
+        if (index < loadmore) {
+          function formatPrice(price) {
+            const priceString = price.toFixed(2);
+            const parts = priceString.split(".");
+            const wholePart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return `R${wholePart}.${parts[1]}`;
+          }
+          return `
     <div class="product-item" data-id="${product.id}" data-category="${
-          product.category
-        }" data-item-name="${product.name}">
+            product.category
+          }" data-item-name="${product.name}">
       <div class="product-image">
         <div>${product.sale ? '<span class="for-sale">Sale</span>' : ""}</div>
         <div class="image-card"><img src="${product.image}" alt="${
-          product.name
-        }"></div>
+            product.name
+          }"></div>
         <div class="cart-btn">
           <span class="icon"><ion-icon name="bag-outline"></ion-icon></span>
           Add To Cart
@@ -871,8 +873,10 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
             )}</span></div>`
       }
     </div>`;
+        }
       })
       .join("");
+
     chairDisplayWrapper.innerHTML = displayItems;
 
     const favoriteIcons = document.querySelectorAll(".favorite-icon");
