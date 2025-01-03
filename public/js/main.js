@@ -162,12 +162,14 @@ function calculateTotal(cartItems) {
     total = 0;
   } else {
     total = cartItems.reduce(
-      (acc, item) => acc + item.itemPrice * item.quantity,
+      (acc, item) => acc + parseFloat(item.itemPrice) * parseInt(item.quantity),
       0
     );
   }
   total === 0 ? "0" : `R${total.toFixed(2)}`;
-  document.querySelector(".cart-total").textContent = `Subtotal R${total}`;
+  document.querySelector(".cart-total").textContent = `Subtotal R${parseFloat(
+    total.toFixed(2)
+  )}`;
   return total;
 }
 
@@ -415,7 +417,7 @@ const renderCartProducts = (cartItems) => {
           increaseBtn.addEventListener("click", (e) => {
             cartItems[index].quantity++;
             let newPrice =
-              cartItems[index].basePrice * cartItems[index].quantity;
+              cartItems[index].itemPrice * cartItems[index].quantity;
             cartItems[index].price = `R${newPrice.toFixed(2)}`;
             e.stopPropagation();
             clickedStates[index] = true;
@@ -432,7 +434,7 @@ const renderCartProducts = (cartItems) => {
             if (cartItems[index].quantity > 1) {
               cartItems[index].quantity--;
               let newPrice =
-                cartItems[index].basePrice * cartItems[index].quantity;
+                cartItems[index].itemPrice * cartItems[index].quantity;
               cartItems[index].price = `R${newPrice.toFixed(2)}`;
               saveCartToLocalStorage(cartItems);
               render();
@@ -791,7 +793,7 @@ const renderChairsForHomePage = (products) => {
               id,
               imgURL,
               itemName,
-              price: `R${itemPrice.toFixed(2)}`,
+              price: `R${parseFloat(itemPrice)}`,
               itemPrice,
               quantity: 1,
             });
@@ -988,7 +990,7 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
               id,
               imgURL,
               itemName,
-              price: `R${itemPrice.toFixed(2)}`,
+              price: `R${parseFloat(itemPrice)}`,
               itemPrice,
               quantity: 1,
             });
