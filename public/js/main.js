@@ -1315,18 +1315,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (listProducts && listProducts.length > 0) {
-        renderChairsForHomePage(listProducts);
-      } else {
-        console.warn("Products array is empty on initial load.");
-      }
-      const defaultFilter = document.querySelector(
-        '.filter-item[data-id="all"]'
-      );
-      if (defaultFilter) {
-        defaultFilter.click();
-      }
-
+      setTimeout(() => {
+        if (listProducts && listProducts.length > 0) {
+          renderChairsForHomePage(listProducts);
+        } else {
+          console.warn("Products array is empty on initial load.");
+        }
+        const defaultFilter = document.querySelector(
+          '.filter-item[data-id="all"]'
+        );
+        if (defaultFilter) {
+          defaultFilter.click();
+        }
+      }, 100);
+      
       const promotionImgUrl = document.querySelector(
         ".promotion-wrapper #promotion-image"
       );
