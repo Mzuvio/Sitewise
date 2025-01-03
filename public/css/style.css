@@ -2800,6 +2800,7 @@ input::-moz-placeholder {
 
   .button-area .quantity-area {
     flex: 1;
+    max-width: 103px;
     gap: 0.5rem;
   }
 

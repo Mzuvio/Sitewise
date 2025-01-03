@@ -1097,21 +1097,188 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
 
 // MAIN FUNCTION
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   try {
     const popupWrapper = document.querySelector(".popup-wrapper");
     const currentPage = window.location.pathname;
     let cartItems = getCartFromLocalStorage();
     let wishlistItems = getWishlistFromLocalStorage();
+    let listProducts = [];
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
+    // async function getProducts() {
+    //   const response = await fetch("/data/products.json");
 
-    const response = await fetch("/data/products.json");
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    //   }
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    listProducts = await response.json();
+    //   listProducts = await response.json();
+    //   listProducts = listProducts
+    // }
+
+    // getProducts();
+    // console.log(listProducts);
+
+    listProducts = [
+      {
+        id: 1,
+        image: "public/images/chair_1.png",
+        category: "Furniture",
+        name: "Velvet Armchair",
+        basePrice: 4500.99,
+        price: "R4,500.99",
+        sale: false,
+        categoryType: "Best Seller",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Brown",
+      },
+      {
+        id: 2,
+        image: "public/images/chair_2.png",
+        category: "Furniture",
+        name: "Leather Recliner",
+        basePrice: 12000.99,
+        price: "R12,000.99",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Grey",
+      },
+      {
+        id: 3,
+        image: "public/images/chair_3.png",
+        category: "Furniture",
+        name: "Modern Accent Chair",
+        basePrice: 3500.99,
+        price: "R3,500.99",
+        sale: false,
+        categoryType: "Best Seller",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "White",
+      },
+      {
+        id: 4,
+        image: "public/images/chair_4.png",
+        category: "Furniture",
+        name: "High-Back Executive Chair",
+        basePrice: 6000.99,
+        price: "R6,000.99",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "white",
+      },
+      {
+        id: 5,
+        image: "public/images/chair_5.png",
+        category: "Furniture",
+        name: "Wingback Chair",
+        basePrice: 5500.99,
+        price: "R5,500.99",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "white",
+      },
+      {
+        id: 6,
+        image: "public/images/chair_7.png",
+        category: "Furniture",
+        name: "Antique Wooden Chair",
+        basePrice: 10000.99,
+        price: "R10,000.99",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Black",
+      },
+      {
+        id: 7,
+        image: "public/images/chair_9.png",
+        category: "Furniture",
+        name: "Contemporary Lounge Chair",
+        basePrice: 8000.99,
+        price: "R8,000.99",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Black",
+      },
+      {
+        id: 8,
+        image: "public/images/chair_10.png",
+        category: "Furniture",
+        name: "Fabric Swivel Chair",
+        basePrice: 3750.99,
+        price: "R3,750.99",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Black",
+      },
+      {
+        id: 9,
+        image: "public/images/chair_17.png",
+        category: "Furniture",
+        name: "Classic Rocking Chair",
+        basePrice: 4500.99,
+        price: "R4,500.99",
+        sale: false,
+        categoryType: "Best Seller",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Cream White",
+      },
+      {
+        id: 10,
+        image: "public/images/chair_18.png",
+        category: "Furniture",
+        name: "Rustic Patio Chair",
+        basePrice: 3000.99,
+        price: "R3,000.99",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "White",
+      },
+      {
+        id: 11,
+        image: "public/images/chair_19.png",
+        category: "Furniture",
+        name: "Ergonomic Office Chair",
+        basePrice: 7000.99,
+        price: "R7,000.99",
+        sale: true,
+        categoryType: "Sales",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "Brown",
+      },
+      {
+        id: 12,
+        image: "public/images/chair_20.png",
+        category: "Furniture",
+        name: "Minimalist Wooden Stool",
+        basePrice: 2000.99,
+        price: "R2,000.99",
+        sale: false,
+        categoryType: "Featured",
+        icon: "bag-outline",
+        favoriteIcon: "heart-outline",
+        color: "White",
+      },
+    ];
+
 
     window.addEventListener("click", (e) => {
       if (e.target === popupWrapper) {
