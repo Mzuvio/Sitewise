@@ -1100,6 +1100,7 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const popupWrapper = document.querySelector(".popup-wrapper");
+    const continueShopping = document.querySelector(".continue");
     const currentPage = window.location.pathname;
     let cartItems = getCartFromLocalStorage();
     let wishlistItems = getWishlistFromLocalStorage();
@@ -1125,6 +1126,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           popupWrapper.classList.remove("show");
         }
       }
+    });
+
+    continueShopping.addEventListener("click", (e) => {
+      window.location.href = "../../views/shop.html";
     });
 
     if (currentPage === "/" || currentPage.includes("index")) {
@@ -1422,6 +1427,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const paymentDescriptions = document.querySelectorAll(
         ".method-description"
       );
+      const paymentWrapper = document.querySelector(".payment-wrapper");
+
+      paymentWrapper.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
 
       radioButtons.forEach((button) => {
         button.addEventListener("click", (e) => {
