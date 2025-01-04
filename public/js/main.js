@@ -1106,7 +1106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let listProducts = [];
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
-    const response = await fetch("/data/products.json");
+    const response = await fetch("./data/products.json");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -1173,7 +1173,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           let productImage = promotionImgUrl.src;
           let productName = promotionChairName.textContent;
           let newId = productElement.dataset.promoId;
-          let price = parseFloat(
+          let itemPrice = parseFloat(
             promotionPrice.textContent.replace("R", "").replace(",", ".")
           );
           if (newId) {
@@ -1184,10 +1184,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 id: newId,
                 imgURL: productImage,
                 itemName: productName,
-                price: `R${price.toFixed(2)}`,
-                basePrice: price,
+                price: `R${itemPrice.toFixed(2)}`,
+                itemPrice,
                 quantity: 1,
               });
+              console.log(cartItems);
             } else {
               showPopup();
             }

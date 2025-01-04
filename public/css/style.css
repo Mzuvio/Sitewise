@@ -2608,6 +2608,9 @@ input::-moz-placeholder {
   }
 
   .product-item .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 1rem;
     padding-bottom: 0.5rem;
   }
@@ -2740,6 +2743,7 @@ input::-moz-placeholder {
   }
 
   .product-collection .product-item {
+    overlay: hidden;
     width: auto;
   }
 
@@ -2761,6 +2765,9 @@ input::-moz-placeholder {
   }
 
   .product-item .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 0.875rem;
     font-weight: var(--fw-medium);
     color: var(--dark-grey);
