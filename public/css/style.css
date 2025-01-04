@@ -3646,7 +3646,7 @@ input::-moz-placeholder {
   z-index: 10;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 768px) {
   .shop-pg.navigation-container {
     height: calc(100vh - 768px);
     max-height: calc(100vh - 768px);
@@ -4316,7 +4316,7 @@ input::-moz-placeholder {
   background: var(--dark-clr);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 768px) {
   .shop-pg.navigation-container {
     margin-top: 70px;
   }
