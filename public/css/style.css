@@ -1598,23 +1598,19 @@ input::-moz-placeholder {
   }
 
   .featured-section .card-item:nth-child(2) .card {
-    background-image: url("../images/chair_12.png");
     background-size: 160px;
   }
 
   .featured-section .card-item:nth-child(3) .card {
-    background-image: url("../images/chair_13.png");
     background-size: 160px;
   }
 
   .featured-section .card-item:nth-child(4) .card {
-    background-image: url("../images/chair_14.png");
     background-size: 160px;
   }
 
   .featured-section .card-item:nth-child(5) .card {
-    background-image: url("../images/chair_15.png");
-    background-size: 160px;
+    background-size: 150px;
   }
 }
 
@@ -1640,23 +1636,19 @@ input::-moz-placeholder {
   }
 
   .featured-section .card-item:nth-child(2) .card {
-    background-image: url("../images/chair_12.png");
     background-size: 160px;
   }
 
   .featured-section .card-item:nth-child(3) .card {
-    background-image: url("../images/chair_13.png");
     background-size: 160px;
   }
 
   .featured-section .card-item:nth-child(4) .card {
-    background-image: url("../images/chair_14.png");
     background-size: 160px;
   }
 
   .featured-section .card-item:nth-child(5) .card {
-    background-image: url("../images/chair_15.png");
-    background-size: 160px;
+    background-size: 150px;
   }
 }
 
