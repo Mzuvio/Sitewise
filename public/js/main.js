@@ -1114,7 +1114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     listProducts = await response.json();
     listProducts = listProducts;
-    getProducts();
 
     window.addEventListener("click", (e) => {
       if (e.target === popupWrapper) {
