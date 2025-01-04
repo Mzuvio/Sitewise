@@ -222,8 +222,9 @@ const renderCardContent = (productElement, productDisplay) => {
   const addToCart = document.querySelector(".product-display .cart-add");
   let quantity = productDisplay.querySelector(".product-display .quantity");
   const quantityBtns = document.querySelectorAll(".quantity-area .icon");
-
   let imgURL = productElement.querySelector(".image-card img").src;
+  let productCategory =
+    productElement.querySelector(".product-category").textContent;
   let itemPrice = "";
   let basePrice = "";
   let salePrice = "";
@@ -241,6 +242,7 @@ const renderCardContent = (productElement, productDisplay) => {
 
   let chairImage = document.querySelector(".left-side img");
   let chairName = document.querySelector(".chair-name");
+  let category = document.querySelector(".product-info .product-category");
   let chairPrice = document.querySelector(".chair-price .onsale");
   let chairSalePrice = document.querySelector(".chair-price .sale-price");
   basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
@@ -248,6 +250,7 @@ const renderCardContent = (productElement, productDisplay) => {
 
   chairImage.src = imgURL;
   chairName.textContent = itemName;
+  category.textContent = productCategory;
   if (salePrice) {
     chairPrice.style.color = "#d3d3d3";
     chairPrice.style.textDecoration = "line-through";
