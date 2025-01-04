@@ -1265,7 +1265,7 @@ const listProducts = [
   },
 ];
 
-if (currentPage.includes("index")) {
+if (currentPage.includes("/")) {
   const productFilters = document.querySelectorAll(".filter-item ");
 
   if (productFilters.length > 0) {
