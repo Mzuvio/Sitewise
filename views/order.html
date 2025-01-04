@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitewise | Checkout</title>
+    <link
+      rel="icon"
+      href="../public/images/icons/favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <!-- ION-ICONS JS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body class="">
+    <!-- BACK BUTTON -->
+    <div class="back-top" id="back-top-btn">
+      <a href="#"><ion-icon name="chevron-up-outline"></ion-icon></a>
+    </div>
+    <div class="discount">
+      <p class="discount-content">
+        Basement Bargains: Enjoy up to 70% off selected furniture & homeware
+        pieces while stocks last!
+      </p>
+      <a href="#">Shop Now</a>
+    </div>
+    <!-- HEADER -->
+    <header class="home-pg header wrapper">
+      <div class="container">
+        <nav class="nav-menu">
+          <a href="index.html" class="logo"
+            >Site<span class="highlight">wise</span></a
+          >
+          <ul class="menu-link">
+            <li><a href="../index.html" class="link">Home</a></li>
+            <li class="active"><a href="shop.html" class="link">Shop</a></li>
+            <li><a href="about.html" class="link">About Us</a></li>
+            <li><a href="blog.html" class="link">Blog</a></li>
+            <li>
+              <a href="contact.html" class="link">contact</a>
+            </li>
+            <li>
+              <div class="whishlist-icon">
+                <ion-icon name="heart-outline"></ion-icon>
+                <span class="whishlist-count">0</span>
+              </div>
+            </li>
+            <li>
+              <div class="cart-icon">
+                <a href="#"><ion-icon name="cart-outline"></ion-icon></a>
+                <span class="item-count">0</span>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="account"
+                ><ion-icon name="person-outline"></ion-icon
+              ></a>
+            </li>
+          </ul>
+          <div class="menu-icon">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- HEADER END -->
+    <!-- WISHLIST -->
+    <div class="wishlist-container">
+      <div class="wishlist-header">
+        <h2 class="wishlist-title">
+          Wishlist(<span class="count-wishlist">0</span>)
+        </h2>
+        <span class="icon btn-cancel">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </div>
+
+      <div class="wishlist-items"></div>
+
+      <div class="shopping-cart-buttons">
+        <a href="shop.html" class="btn btn-checkout continue"
+          >Continue shopping</a
+        >
+      </div>
+    </div>
+    <!-- END WISHLIST-->
+    <!-- HEADER END -->
+    <div class="shopping-cart">
+      <div class="shopping-cart-header">
+        <h2 class="shopping-cart-title">Shopping Cart</h2>
+        <span class="icon btn-cancel">
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </div>
+      <div class="cart-items"></div>
+
+      <div class="cart-summary">
+        <p class="cart-total" id="overroll-total"></p>
+      </div>
+      <div class="shopping-cart-buttons">
+        <a href="checkout.html" class="btn btn-checkout">Checkout</a>
+      </div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="form-login account-form" id="login">
+      <div class="form-header">
+        <span class="form-title">Login</span>
+        <div class="form-close">
+          <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+          </span>
+        </div>
+      </div>
+
+      <form action="#" method="POST">
+        <div class="form-control">
+          <input type="email" name="email" placeholder="email address *" />
+        </div>
+
+        <div class="form-control">
+          <input type="password" name="password" placeholder="password *" />
+        </div>
+
+        <div class="form-options">
+          <label for="checkbox" class="label-remember">
+            <input type="checkbox" name="remember" />
+            Remember me
+          </label>
+          <a href="password.html" class="link-forgot">Lost password?</a>
+        </div>
+
+        <input type="submit" value="Log in" name="login" class="btn-submit" />
+
+        <div class="form-switch">
+          <span>No account yet?</span>
+          <a href="signup.html" class="link-create">Create Account</a>
+        </div>
+      </form>
+    </div>
+    <!-- END FORM -->
+
+    <!-- PLACE ORDER CARD -->
+    <div class="order-card">
+      <div class="card">
+        <div class="icon image-card">
+          <img src="../public/images/icons/check.png" alt="Check" />
+        </div>
+        <h2 class="order-title">Order Comfirmation!</h2>
+        <p class="order-message">
+          Your order has been successfully.<span class="order-history link"
+            >Order History</span
+          >
+        </p>
+        <div class="arival-time">
+          <p class="arival-text">
+            Get delivery by <span class="order-date">Mon, 08 Feb</span>
+            <span class="order-arival-date">Mon, 08 Feb</span>
+          </p>
+        </div>
+        <button type="button" class="shopping-btn btn">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+    <!-- JS  -->
+    <script src="../public/js/main.js" defer></script>
+  </body>
+</html>

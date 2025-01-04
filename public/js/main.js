@@ -1431,6 +1431,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       paymentWrapper.addEventListener("click", (e) => {
         e.preventDefault();
+        e.target.textContent = "Placing Order...";
+        setTimeout(() => {
+          window.location.href = "/views/order.html";
+          saveCartToLocalStorage([]);
+          updateItemCount([]);
+          up;
+        }, 2000);
       });
 
       radioButtons.forEach((button) => {
@@ -1444,6 +1451,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
           currentDecription.classList.add("show");
         });
+      });
+    } else if (currentPage.includes("order")) {
+      const shoppingBtn = document.querySelector(".shopping-btn");
+      shoppingBtn.addEventListener("click", () => {
+        window.location.href = "/views/shop.html";
       });
     }
   } catch (error) {
