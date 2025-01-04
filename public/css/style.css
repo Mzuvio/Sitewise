@@ -1530,7 +1530,7 @@ input::-moz-placeholder {
 }
 
 .featured-section .card-item:nth-child(5) .card {
-  background-image: url("../images/chair_15.png");
+  background-image: url("../images/chair_20.png");
   background-size: 180px;
 }
 
@@ -2338,7 +2338,7 @@ input::-moz-placeholder {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.5rem;
 }
 
 .item-details .wishlist-area span {
@@ -3775,11 +3775,11 @@ input::-moz-placeholder {
 }
 
 .checkmark:after {
-  top: 45%;
-  left: 45%;
+  top: 50%;
+  left: 41.8%;
   width: 6px;
   height: 6px;
-  transform: translate(-45%, -45%);
+  transform: translate(-41.8%, -52%);
   border-radius: 50%;
   background: var(--white-clr);
 }

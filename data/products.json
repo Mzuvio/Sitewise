@@ -2,8 +2,8 @@
   {
     "id": 1,
     "image": "public/images/chair_1.png",
-    "category": "Furniture",
-    "name": "Velvet Armchair",
+    "category": "Modern",
+    "name": "Velvet Lounge Chair",
     "basePrice": 4500.99,
     "price": "R4,500.99",
     "sale": false,
@@ -15,7 +15,7 @@
   {
     "id": 2,
     "image": "public/images/chair_2.png",
-    "category": "Furniture",
+    "category": "Classic",
     "name": "Leather Recliner",
     "basePrice": 12000.99,
     "price": "R12,000.99",
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "image": "public/images/chair_3.png",
-    "category": "Furniture",
+    "category": "Modern",
     "name": "Modern Accent Chair",
     "basePrice": 3500.99,
     "price": "R3,500.99",
@@ -41,7 +41,7 @@
   {
     "id": 4,
     "image": "public/images/chair_4.png",
-    "category": "Furniture",
+    "category": "Scandinavian",
     "name": "High-Back Executive Chair",
     "basePrice": 6000.99,
     "price": "R6,000.99",
@@ -49,25 +49,25 @@
     "categoryType": "Sales",
     "icon": "bag-outline",
     "favoriteIcon": "heart-outline",
-    "color": "white"
+    "color": "White"
   },
   {
     "id": 5,
     "image": "public/images/chair_5.png",
-    "category": "Furniture",
-    "name": "Wingback Chair",
+    "category": "Modern",
+    "name": "Wingback Armchair",
     "basePrice": 5500.99,
     "price": "R5,500.99",
     "sale": true,
     "categoryType": "Sales",
     "icon": "bag-outline",
     "favoriteIcon": "heart-outline",
-    "color": "white"
+    "color": "White"
   },
   {
     "id": 6,
     "image": "public/images/chair_7.png",
-    "category": "Furniture",
+    "category": "Classic",
     "name": "Antique Wooden Chair",
     "basePrice": 10000.99,
     "price": "R10,000.99",
@@ -80,7 +80,7 @@
   {
     "id": 7,
     "image": "public/images/chair_9.png",
-    "category": "Furniture",
+    "category": "Classic",
     "name": "Contemporary Lounge Chair",
     "basePrice": 8000.99,
     "price": "R8,000.99",
@@ -93,7 +93,7 @@
   {
     "id": 8,
     "image": "public/images/chair_10.png",
-    "category": "Furniture",
+    "category": "Scandinavian",
     "name": "Fabric Swivel Chair",
     "basePrice": 3750.99,
     "price": "R3,750.99",
@@ -106,7 +106,7 @@
   {
     "id": 9,
     "image": "public/images/chair_17.png",
-    "category": "Furniture",
+    "category": "Classic",
     "name": "Classic Rocking Chair",
     "basePrice": 4500.99,
     "price": "R4,500.99",
@@ -119,7 +119,7 @@
   {
     "id": 10,
     "image": "public/images/chair_18.png",
-    "category": "Furniture",
+    "category": "Minimalist",
     "name": "Rustic Patio Chair",
     "basePrice": 3000.99,
     "price": "R3,000.99",
@@ -132,7 +132,7 @@
   {
     "id": 11,
     "image": "public/images/chair_19.png",
-    "category": "Furniture",
+    "category": "Ergonomic",
     "name": "Ergonomic Office Chair",
     "basePrice": 7000.99,
     "price": "R7,000.99",
@@ -145,10 +145,62 @@
   {
     "id": 12,
     "image": "public/images/chair_20.png",
-    "category": "Furniture",
+    "category": "Minimalist",
     "name": "Minimalist Wooden Stool",
     "basePrice": 2000.99,
     "price": "R2,000.99",
+    "sale": false,
+    "categoryType": "Featured",
+    "icon": "bag-outline",
+    "favoriteIcon": "heart-outline",
+    "color": "White"
+  },
+  {
+    "id": 13,
+    "image": "public/images/chair_21.png",
+    "category": "Modern",
+    "name": "Cultivated Armchair",
+    "basePrice": 25000.99,
+    "price": "R25,000.99",
+    "sale": false,
+    "categoryType": "Featured",
+    "icon": "bag-outline",
+    "favoriteIcon": "heart-outline",
+    "color": "White"
+  },
+  {
+    "id": 14,
+    "image": "public/images/chair_22.png",
+    "category": "Contemporary",
+    "name": "Champagne Lounge Chair",
+    "basePrice": 21000.99,
+    "price": "R21,000.99",
+    "sale": false,
+    "categoryType": "Featured",
+    "icon": "bag-outline",
+    "favoriteIcon": "heart-outline",
+    "color": "White"
+  },
+  {
+    "id": 15,
+    "image": "public/images/chair_23.png",
+    "category": "Classic",
+    "name": "Carlyle Classic Chair",
+    "basePrice": 18000.99,
+    "price": "R18,000.99",
+    "sale": false,
+    "categoryType": "Featured",
+    "icon": "bag-outline",
+    "favoriteIcon": "heart-outline",
+    "color": "White"
+  },
+  {
+    "id": 16,
+    "image": "public/images/chair_24.png",
+    "category": "Scandinavian",
+    "name": "Cameo Nordic Chair",
+    "basePrice": 18000.99,
+    "price": "R18,000.99",
     "sale": false,
     "categoryType": "Featured",
     "icon": "bag-outline",

@@ -1218,15 +1218,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         ".filter-category .custom-label"
       );
 
-      categoryFilters.forEach((label) => {
-        label.addEventListener("click", (e) => {
-          categoryFilters.forEach((filter) =>
-            filter.classList.remove("active")
-          );
-          label.classList.add("active");
-        });
-      });
-
       const filterIcon = document.querySelector(".sort-dropdown .icon");
       const dropdownFilter = document.querySelector(".select-items");
       const selectedFilter = document.querySelector(".select-selected");
@@ -1234,6 +1225,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const progressTotal = document.querySelector(".total-count");
       const sidebarFilters = document.querySelectorAll(".price-list li");
       const colorItems = document.querySelectorAll(".color-item input");
+      const cateFilters = document.querySelectorAll(".category-item");
 
       filterIcon.addEventListener("click", () => {
         if (dropdownFilter.classList.contains("select-hide")) {
@@ -1296,6 +1288,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           selectedFilter.innerHTML = currentSort;
           dropdownFilter.classList.add("select-hide");
+        });
+      });
+
+      const categoryRadios = document.querySelectorAll(
+        'input[name="category"]'
+      );
+
+      function filterByCategory(filter) {
+        if (filter === "all") {
+          return listProducts;
+        }
+        return listProducts.filter(
+          (product) => product.category.toLowerCase() === filter.toLowerCase()
+        );
+      }
+
+      categoryRadios.forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+          const selectedCategory = e.target.id;
+          let chairs = filterByCategory(selectedCategory);
+          renderChairsForShopPage(chairs);
         });
       });
 
