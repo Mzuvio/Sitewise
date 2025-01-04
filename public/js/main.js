@@ -1097,269 +1097,24 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
 
 // MAIN FUNCTION
 
-// data
-
-let ItemFromCart = getCartFromLocalStorage();
-let itemsFromWishlist = getWishlistFromLocalStorage();
-
-updateItemCount(ItemFromCart);
-updateWishlistCount(itemsFromWishlist);
-const currentPage = window.location.pathname;
-
-const listProducts = [
-  {
-    id: 1,
-    image: "public/images/chair_1.png",
-    category: "Furniture",
-    name: "Velvet Armchair",
-    basePrice: 4500.99,
-    price: "R4,500.99",
-    sale: false,
-    categoryType: "Best Seller",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Brown",
-  },
-  {
-    id: 2,
-    image: "public/images/chair_2.png",
-    category: "Furniture",
-    name: "Leather Recliner",
-    basePrice: 12000.99,
-    price: "R12,000.99",
-    sale: true,
-    categoryType: "Sales",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Grey",
-  },
-  {
-    id: 3,
-    image: "public/images/chair_3.png",
-    category: "Furniture",
-    name: "Modern Accent Chair",
-    basePrice: 3500.99,
-    price: "R3,500.99",
-    sale: false,
-    categoryType: "Best Seller",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "White",
-  },
-  {
-    id: 4,
-    image: "public/images/chair_4.png",
-    category: "Furniture",
-    name: "High-Back Executive Chair",
-    basePrice: 6000.99,
-    price: "R6,000.99",
-    sale: true,
-    categoryType: "Sales",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "white",
-  },
-  {
-    id: 5,
-    image: "public/images/chair_5.png",
-    category: "Furniture",
-    name: "Wingback Chair",
-    basePrice: 5500.99,
-    price: "R5,500.99",
-    sale: true,
-    categoryType: "Sales",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "white",
-  },
-  {
-    id: 6,
-    image: "public/images/chair_7.png",
-    category: "Furniture",
-    name: "Antique Wooden Chair",
-    basePrice: 10000.99,
-    price: "R10,000.99",
-    sale: false,
-    categoryType: "Featured",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Black",
-  },
-  {
-    id: 7,
-    image: "public/images/chair_9.png",
-    category: "Furniture",
-    name: "Contemporary Lounge Chair",
-    basePrice: 8000.99,
-    price: "R8,000.99",
-    sale: true,
-    categoryType: "Sales",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Black",
-  },
-  {
-    id: 8,
-    image: "public/images/chair_10.png",
-    category: "Furniture",
-    name: "Fabric Swivel Chair",
-    basePrice: 3750.99,
-    price: "R3,750.99",
-    sale: false,
-    categoryType: "Featured",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Black",
-  },
-  {
-    id: 9,
-    image: "public/images/chair_17.png",
-    category: "Furniture",
-    name: "Classic Rocking Chair",
-    basePrice: 4500.99,
-    price: "R4,500.99",
-    sale: false,
-    categoryType: "Best Seller",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Cream White",
-  },
-  {
-    id: 10,
-    image: "public/images/chair_18.png",
-    category: "Furniture",
-    name: "Rustic Patio Chair",
-    basePrice: 3000.99,
-    price: "R3,000.99",
-    sale: false,
-    categoryType: "Featured",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "White",
-  },
-  {
-    id: 11,
-    image: "public/images/chair_19.png",
-    category: "Furniture",
-    name: "Ergonomic Office Chair",
-    basePrice: 7000.99,
-    price: "R7,000.99",
-    sale: true,
-    categoryType: "Sales",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "Brown",
-  },
-  {
-    id: 12,
-    image: "public/images/chair_20.png",
-    category: "Furniture",
-    name: "Minimalist Wooden Stool",
-    basePrice: 2000.99,
-    price: "R2,000.99",
-    sale: false,
-    categoryType: "Featured",
-    icon: "bag-outline",
-    favoriteIcon: "heart-outline",
-    color: "White",
-  },
-];
-
-if (currentPage.includes("/")) {
-  const productFilters = document.querySelectorAll(".filter-item ");
-
-  if (productFilters.length > 0) {
-    productFilters[0].classList.add("active");
-  }
-
-  productFilters.forEach((filter) => {
-    filter.addEventListener("click", (e) => {
-      productFilters.forEach((f) => f.classList.remove("active"));
-      filter.classList.add("active");
-      const category = e.currentTarget.dataset.id.toLowerCase();
-      displayFiltered(category, listProducts);
-    });
-  });
-
-  function displayFiltered(category, listProducts) {
-    const filteredProducts = listProducts.filter((product) => {
-      return product.categoryType.toLowerCase() === category;
-    });
-    if (category == "all") {
-      renderChairsForHomePage(listProducts);
-    } else {
-      renderChairsForHomePage(filteredProducts);
-    }
-  }
-
-  setTimeout(() => {
-    if (listProducts && listProducts.length > 0) {
-      renderChairsForHomePage(listProducts);
-    } else {
-      console.warn("Products array is empty on initial load.");
-    }
-  }, 100);
-
-  const promotionImgUrl = document.querySelector(
-    ".promotion-wrapper #promotion-image"
-  );
-  const promotionChairName = document.querySelector(
-    ".promotion-wrapper .promotion-title"
-  );
-  const promotionPrice = document.querySelector(".promotion-price");
-  const promotionBtn = document.querySelector(".promotion-wrapper .shop-now");
-
-  if (promotionBtn) {
-    promotionBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      let productElement = e.target.parentElement.parentElement.parentElement;
-      let id = listProducts[listProducts.length - 1].id + 1;
-      productElement.dataset.promoId = id;
-      let productImage = promotionImgUrl.src;
-      let productName = promotionChairName.textContent;
-      let newId = productElement.dataset.promoId;
-      let price = parseFloat(
-        promotionPrice.textContent.replace("R", "").replace(",", ".")
-      );
-      if (newId) {
-        ItemFromCart = getCartFromLocalStorage();
-        let exists = ItemFromCart.find((item) => item.id == newId);
-        if (!exists) {
-          ItemFromCart.push({
-            id: newId,
-            imgURL: productImage,
-            itemName: productName,
-            price: `R${price.toFixed(2)}`,
-            basePrice: price,
-            quantity: 1,
-          });
-        } else {
-          showPopup();
-        }
-        saveCartToLocalStorage(ItemFromCart);
-        updateItemCount(ItemFromCart);
-      }
-      renderCartProducts(ItemFromCart);
-    });
-  }
-}
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
     const popupWrapper = document.querySelector(".popup-wrapper");
+    const currentPage = window.location.pathname;
+    let cartItems = getCartFromLocalStorage();
+    let wishlistItems = getWishlistFromLocalStorage();
+    let listProducts = [];
+    updateItemCount(cartItems);
+    updateWishlistCount(wishlistItems);
+    const response = await fetch("/data/products.json");
 
-    // async function getProducts() {
-    //   const response = await fetch("/data/products.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`);
-    //   }
-
-    //   listProducts = await response.json();
-    //   listProducts = listProducts
-    // }
-
-    // getProducts();
-    // console.log(listProducts);
+    listProducts = await response.json();
+    listProducts = listProducts;
+    getProducts();
 
     window.addEventListener("click", (e) => {
       if (e.target === popupWrapper) {
@@ -1369,7 +1124,81 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if (currentPage.includes("shop")) {
+    if (currentPage.includes("/")) {
+      const productFilters = document.querySelectorAll(".filter-item ");
+
+      if (productFilters.length > 0) {
+        productFilters[0].classList.add("active");
+      }
+
+      productFilters.forEach((filter) => {
+        filter.addEventListener("click", (e) => {
+          productFilters.forEach((f) => f.classList.remove("active"));
+          filter.classList.add("active");
+          const category = e.currentTarget.dataset.id.toLowerCase();
+          displayFiltered(category, listProducts);
+        });
+      });
+
+      function displayFiltered(category, listProducts) {
+        const filteredProducts = listProducts.filter((product) => {
+          return product.categoryType.toLowerCase() === category;
+        });
+        if (category == "all") {
+          renderChairsForHomePage(listProducts);
+        } else {
+          renderChairsForHomePage(filteredProducts);
+        }
+      }
+
+      renderChairsForHomePage(listProducts);
+
+      const promotionImgUrl = document.querySelector(
+        ".promotion-wrapper #promotion-image"
+      );
+      const promotionChairName = document.querySelector(
+        ".promotion-wrapper .promotion-title"
+      );
+      const promotionPrice = document.querySelector(".promotion-price");
+      const promotionBtn = document.querySelector(
+        ".promotion-wrapper .shop-now"
+      );
+
+      if (promotionBtn) {
+        promotionBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          let productElement =
+            e.target.parentElement.parentElement.parentElement;
+          let id = listProducts[listProducts.length - 1].id + 1;
+          productElement.dataset.promoId = id;
+          let productImage = promotionImgUrl.src;
+          let productName = promotionChairName.textContent;
+          let newId = productElement.dataset.promoId;
+          let price = parseFloat(
+            promotionPrice.textContent.replace("R", "").replace(",", ".")
+          );
+          if (newId) {
+            cartItems = getCartFromLocalStorage();
+            let exists = cartItems.find((item) => item.id == newId);
+            if (!exists) {
+              cartItems.push({
+                id: newId,
+                imgURL: productImage,
+                itemName: productName,
+                price: `R${price.toFixed(2)}`,
+                basePrice: price,
+                quantity: 1,
+              });
+            } else {
+              showPopup();
+            }
+            saveCartToLocalStorage(cartItems);
+            updateItemCount(cartItems);
+          }
+          renderCartProducts(cartItems);
+        });
+      }
+    } else if (currentPage.includes("shop")) {
       const originalProducts = [...listProducts];
 
       listProducts.forEach((product) => {
@@ -1606,7 +1435,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (error) {
     console.error("Error during page initialization:", error);
   }
-  renderCartProducts(ItemFromCart);
+  renderCartProducts(cartItems);
 });
 
 const initializeCart = () => {
