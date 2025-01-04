@@ -4829,14 +4829,15 @@ input::-moz-placeholder {
 
 .checkout-pg label {
   font-size: var(--fs-sml);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
   position: relative;
 }
 
 .checkout-pg .form-control label::after {
   content: "*";
-  color: red;
+  color: rgb(246, 39, 39);
   top: 0;
+  font-size: var(--fs-xsml);
   right: 0;
 }
 
@@ -4881,7 +4882,7 @@ input::-moz-placeholder {
 .order-detail .item-list span,
 .order-detail .item {
   color: rgb(181, 181, 181);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
 }
 
 .order-detail .item {
@@ -4928,7 +4929,7 @@ input::-moz-placeholder {
   line-height: var(--line-height);
   margin-left: 1.25rem;
   margin-top: 0.75rem;
-  display: none;
+  display: block;
   transition: all 0.5s ease;
 }
 
@@ -4968,14 +4969,13 @@ input::-moz-placeholder {
     margin-bottom: 0.75rem;
   }
 
-  
-.checkout-pg .billing-form {
-  flex: 2;
-  padding-right: 0;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eeeeee;
-  border-right:none ;
-}
+  .checkout-pg .billing-form {
+    flex: 2;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eeeeee;
+    border-right: none;
+  }
 
   .checkout-pg .form-control {
     margin-block: 1rem;
@@ -5028,7 +5028,7 @@ input::-moz-placeholder {
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .checkout-pg .form-control {
     margin-block: 1rem;
   }
