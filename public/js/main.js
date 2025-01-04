@@ -1106,7 +1106,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     let listProducts = [];
     updateItemCount(cartItems);
     updateWishlistCount(wishlistItems);
-    const response = await fetch("./data/products.json");
+    const response = await fetch(
+      currentPage === "/" || currentPage.includes("index")
+        ? "./data/products.json"
+        : "/data/products.json"
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -1123,7 +1127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    if (currentPage.includes("/")) {
+    if (currentPage === "/" || currentPage.includes("index")) {
       const productFilters = document.querySelectorAll(".filter-item ");
 
       if (productFilters.length > 0) {
