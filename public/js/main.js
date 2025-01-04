@@ -1109,7 +1109,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch(
       currentPage === "/" || currentPage.includes("index")
         ? "./data/products.json"
-        : "/data/products.json"
+        : "../data/products.json"
     );
 
     if (!response.ok) {
