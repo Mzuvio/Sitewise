@@ -499,7 +499,6 @@ const renderCartProducts = (cartItems) => {
   render();
 };
 
-
 // RENDER WISHLIST
 
 const renderWishlistProducts = (wishlistItems) => {
@@ -544,7 +543,7 @@ const renderWishlistProducts = (wishlistItems) => {
       btn.addEventListener("click", () => {
         const index = parseInt(btn.dataset.index, 10);
         const removedItem = wishlistItems[index];
-        
+
         wishlistItems.splice(index, 1);
         saveWishlistToLocalStorage(wishlistItems);
         updateWishlistCount(wishlistItems);
@@ -555,9 +554,7 @@ const renderWishlistProducts = (wishlistItems) => {
             `.product-item[data-id="${removedItem.id}"]`
           );
           if (productElement) {
-            const favoriteIcon = productElement.querySelector(
-              ".favorite-icon"
-            );
+            const favoriteIcon = productElement.querySelector(".favorite-icon");
             if (favoriteIcon) {
               favoriteIcon.name = "heart-outline";
               favoriteIcon.style.color = "#2d2a32";
@@ -570,7 +567,6 @@ const renderWishlistProducts = (wishlistItems) => {
 
   wishlistCount.textContent = wishlistItems.length;
 };
-
 
 // RENDER CHAIRS ON HOME PAGE
 
@@ -1104,6 +1100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const popupWrapper = document.querySelector(".popup-wrapper");
     const continueShopping = document.querySelector(".continue");
+    const submitBtns = document.querySelectorAll(".btn-submit");
     const currentPage = window.location.pathname;
     let cartItems = getCartFromLocalStorage();
     let wishlistItems = getWishlistFromLocalStorage();
@@ -1115,6 +1112,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? "./data/products.json"
         : "../data/products.json"
     );
+
+    submitBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -1217,9 +1220,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         product.image = "../".concat(product.image);
       });
       renderChairsForShopPage(listProducts);
-      const categoryFilters = document.querySelectorAll(
-        ".filter-category .custom-label"
-      );
 
       const filterIcon = document.querySelector(".sort-dropdown .icon");
       const dropdownFilter = document.querySelector(".select-items");
@@ -1228,7 +1228,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const progressTotal = document.querySelector(".total-count");
       const sidebarFilters = document.querySelectorAll(".price-list li");
       const colorItems = document.querySelectorAll(".color-item input");
-      const cateFilters = document.querySelectorAll(".category-item");
 
       filterIcon.addEventListener("click", () => {
         if (dropdownFilter.classList.contains("select-hide")) {
