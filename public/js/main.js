@@ -219,6 +219,8 @@ function hidePopup() {
 }
 
 const renderCardContent = (productElement, productDisplay) => {
+  let wishlist = getWishlistFromLocalStorage();
+  let whishlistIcon = document.querySelector(".display-wishlist-icon");
   const addToCart = document.querySelector(".product-display .cart-add");
   let quantity = productDisplay.querySelector(".product-display .quantity");
   const quantityBtns = document.querySelectorAll(".quantity-area .icon");
@@ -283,6 +285,30 @@ const renderCardContent = (productElement, productDisplay) => {
           quantity.textContent = quant;
         }
       });
+    });
+  }
+  const productInWishlist = wishlist.some((item) => item.id === id);
+
+  if (whishlistIcon) {
+    whishlistIcon.addEventListener("click", () => {
+      if (productInWishlist) {
+        wishlist = wishlist.filter((item) => item.id !== id);
+        whishlistIcon.name = "heart-outline";
+        whishlistIcon.style.color = "#2d2a32";
+      } else {
+        wishlist.push({
+          id: id,
+          name: itemName,
+          price: `R${itemPrice.toFixed(2)}`,
+          image: imgURL,
+        });
+        whishlistIcon.name = "heart";
+        whishlistIcon.style.color = "#2d2a32";
+      }
+
+      saveWishlistToLocalStorage(wishlist);
+      updateWishlistCount(wishlist);
+      renderWishlistProducts(wishlist);
     });
   }
 
@@ -473,41 +499,6 @@ const renderCartProducts = (cartItems) => {
   render();
 };
 
-// RENDER DISPLAY CHECKOUT
-
-const renderDisplayWishilist = (target, displayCard) => {
-  let wishlist = getWishlistFromLocalStorage();
-  target.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const productElement = displayCard;
-    const id = productElement.dataset.id;
-    const productName = productElement.querySelector(".chair-name").textContent;
-    const productPrice =
-      productElement.querySelector(".chair-price").textContent;
-    const productImage = productElement.querySelector(".image-card img").src;
-
-    const productInWishlist = wishlist.some((item) => item.id === id);
-
-    if (productInWishlist) {
-      wishlist = wishlist.filter((item) => item.id !== id);
-      target.name = "heart-outline";
-      target.style.color = "#2d2a32";
-    } else {
-      wishlist.push({
-        id: id,
-        name: productName,
-        price: productPrice,
-        image: productImage,
-      });
-      target.name = "heart";
-      target.style.color = "#2d2a32";
-    }
-
-    saveWishlistToLocalStorage(wishlist);
-    updateWishlistCount(wishlist);
-    renderWishlistProducts(wishlist);
-  });
-};
 
 // RENDER WISHLIST
 
@@ -525,7 +516,7 @@ const renderWishlistProducts = (wishlistItems) => {
     const productList = wishlistItems
       .map((product, index) => {
         return `
-        <div class="cart-item" data-index="${index} data-id=${product.id}">
+        <div class="cart-item" data-index="${index}" data-id="${product.id}">
           <div class="cart-item-img-wrapper">
             <img
               src="${product.image}"
@@ -550,19 +541,36 @@ const renderWishlistProducts = (wishlistItems) => {
     );
 
     removeButtons.forEach((btn) => {
-      const index = parseInt(btn.dataset.index, 10);
       btn.addEventListener("click", () => {
+        const index = parseInt(btn.dataset.index, 10);
+        const removedItem = wishlistItems[index];
+        
         wishlistItems.splice(index, 1);
-
         saveWishlistToLocalStorage(wishlistItems);
         updateWishlistCount(wishlistItems);
         renderWishlistProducts(wishlistItems);
+
+        if (removedItem && removedItem.id) {
+          const productElement = document.querySelector(
+            `.product-item[data-id="${removedItem.id}"]`
+          );
+          if (productElement) {
+            const favoriteIcon = productElement.querySelector(
+              ".favorite-icon"
+            );
+            if (favoriteIcon) {
+              favoriteIcon.name = "heart-outline";
+              favoriteIcon.style.color = "#2d2a32";
+            }
+          }
+        }
       });
     });
   }
 
   wishlistCount.textContent = wishlistItems.length;
 };
+
 
 // RENDER CHAIRS ON HOME PAGE
 
@@ -715,7 +723,7 @@ const renderChairsForHomePage = (products) => {
         productDisplay.classList.add("show");
 
         if (whishlistIcon) {
-          renderDisplayWishilist(whishlistIcon, productDisplay);
+          renderCardContent(productElement, productDisplay);
         }
       });
     });
@@ -896,25 +904,84 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
 
     let wishlist = getWishlistFromLocalStorage();
 
-    if (whishlistHeart) {
-      whishlistHeart.addEventListener("click", (e) => {
-        e.stopPropagation();
+    favoriteIcons.forEach((icon) => {
+      const productItem = icon.closest(".product-item");
+      const productId = productItem.dataset.id;
 
-        if (whishlistHeart.name === "heart-outline") {
-          whishlistHeart.name = "heart";
-          whishlistHeart.style.color = "#2d2a32";
+      if (wishlist.some((item) => item.id === productId)) {
+        icon.name = "heart";
+        icon.style.color = "#2d2a32";
+      } else {
+        icon.name = "heart-outline";
+        icon.style.color = "#2d2a32";
+      }
+
+      icon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const productElement = icon.closest(".product-item");
+        const productId = productElement.dataset.id;
+        const productName =
+          productElement.querySelector(".product-name").textContent;
+        const productPrice = productElement.querySelector(".product-price");
+        const productImage =
+          productElement.querySelector(".image-card img").src;
+        let basePrice = "";
+        let salePrice = "";
+        let itemPrice = "";
+        let hasOnsale = productPrice.querySelector(".onsale");
+
+        if (!hasOnsale) {
+          basePrice =
+            productElement.querySelector(".product-price").textContent;
         } else {
-          whishlistHeart.name = "heart-outline";
-          whishlistHeart.style.color = "#2d2a32";
+          salePrice = productElement.querySelector(".sale-price").textContent;
         }
+
+        basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
+        salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
+
+        if (salePrice) {
+          itemPrice = `R${salePrice}`;
+        } else {
+          itemPrice = `R${basePrice}`;
+        }
+
+        const productInWishlist = wishlist.some(
+          (item) => item.id === productId
+        );
+
+        if (productInWishlist) {
+          wishlist = wishlist.filter((item) => item.id !== productId);
+          icon.name = "heart-outline";
+          icon.style.color = "#2d2a32";
+        } else {
+          wishlist.push({
+            id: productId,
+            name: productName,
+            price: itemPrice,
+            image: productImage,
+          });
+          icon.name = "heart";
+          icon.style.color = "#2d2a32";
+        }
+
+        saveWishlistToLocalStorage(wishlist);
+        updateWishlistCount(wishlist);
+        renderWishlistProducts(wishlist);
       });
-    }
+    });
 
     imageCards.forEach((image) => {
       image.addEventListener("click", (e) => {
         let productElement = e.target.parentElement.parentElement.parentElement;
+        const whishlistIcon = document.querySelector(".display-wishlist-icon");
+
         renderCardContent(productElement, productDisplay);
         productDisplay.classList.add("show");
+
+        if (whishlistIcon) {
+          renderCardContent(productElement, productDisplay);
+        }
       });
     });
 
@@ -1009,73 +1076,6 @@ const renderChairsForShopPage = (products, loadmore = 8) => {
         }
 
         renderCartProducts(cartItems);
-      });
-    });
-
-    favoriteIcons.forEach((icon) => {
-      const productItem = icon.closest(".product-item");
-      const productId = productItem.dataset.id;
-
-      if (wishlist.some((item) => item.id === productId)) {
-        icon.name = "heart";
-        icon.style.color = "#2d2a32";
-      } else {
-        icon.name = "heart-outline";
-        icon.style.color = "#2d2a32";
-      }
-
-      icon.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const productElement = icon.closest(".product-item");
-        const productId = productElement.dataset.id;
-        const productName =
-          productElement.querySelector(".product-name").textContent;
-        const productPrice = productElement.querySelector(".product-price");
-        const productImage =
-          productElement.querySelector(".image-card img").src;
-        let basePrice = "";
-        let salePrice = "";
-        let itemPrice = "";
-        let hasOnsale = productPrice.querySelector(".onsale");
-
-        if (!hasOnsale) {
-          basePrice =
-            productElement.querySelector(".product-price").textContent;
-        } else {
-          salePrice = productElement.querySelector(".sale-price").textContent;
-        }
-
-        basePrice = parseFloat(basePrice.replace("R", "").replace(",", ""));
-        salePrice = parseFloat(salePrice.replace("R", "").replace(",", ""));
-
-        if (salePrice) {
-          itemPrice = `R${salePrice}`;
-        } else {
-          itemPrice = `R${basePrice}`;
-        }
-
-        const productInWishlist = wishlist.some(
-          (item) => item.id === productId
-        );
-
-        if (productInWishlist) {
-          wishlist = wishlist.filter((item) => item.id !== productId);
-          icon.name = "heart-outline";
-          icon.style.color = "#2d2a32";
-        } else {
-          wishlist.push({
-            id: productId,
-            name: productName,
-            price: itemPrice,
-            image: productImage,
-          });
-          icon.name = "heart";
-          icon.style.color = "#2d2a32";
-        }
-
-        saveWishlistToLocalStorage(wishlist);
-        updateWishlistCount(wishlist);
-        renderWishlistProducts(wishlist);
       });
     });
 
