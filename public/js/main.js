@@ -1442,9 +1442,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const paymentDescriptions = document.querySelectorAll(
         ".method-description"
       );
-      const paymentWrapper = document.querySelector(".payment-wrapper");
+      const placeBtn = document.querySelector(".place-order");
 
-      paymentWrapper.addEventListener("click", (e) => {
+      placeBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.target.textContent = "Placing Order...";
         setTimeout(() => {

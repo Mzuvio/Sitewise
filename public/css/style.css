@@ -5909,13 +5909,13 @@ input::-moz-placeholder {
   line-height: var(--line-height);
   margin-left: 1.25rem;
   margin-top: 0.75rem;
-  display: block;
+  display: none;
   transition: all 0.5s ease;
 }
 
 .method-description.show {
   display: block;
-  animation: popup-slide 0.2s linear;
+  animation: popup-slide 0.3s linear;
 }
 
 @keyframes popup-slide {
@@ -6209,7 +6209,7 @@ input::-moz-placeholder {
   font-family: "Jost", sans-serif;
   font-size: var(--fs-xsml);
   text-transform: uppercase;
-  background: #02BC7D;
+  background: #20bf55;
   color: var(--white-clr);
   cursor: pointer;
   margin-top: 2rem;
