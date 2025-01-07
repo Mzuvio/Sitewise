@@ -1526,7 +1526,7 @@ input::-moz-placeholder {
 .form-register .form-header,
 .reset-form .form-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .form-register .form-header .form-title {
@@ -1540,7 +1540,7 @@ input::-moz-placeholder {
 
 .register-pg .message {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-size: var(--fs-sml);
   font-weight: var(--fw-normal);
   color: var(--text-clr);
@@ -1571,23 +1571,6 @@ input::-moz-placeholder {
     width: 390px;
   }
 
-  .form-register .form-header,
-  .reset-form .form-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .register-pg .form-switch {
-    text-align: center;
-  }
-
-  .reset-form .message {
-    padding-left: 2rem;
-    margin-bottom: 2rem;
-    font-size: var(--fs-sml);
-    font-weight: var(--fw-normal);
-    color: var(--text-clr);
-  }
 }
 
 @media screen and (min-width: 360px) and (max-width: 375px) {
@@ -1596,6 +1579,8 @@ input::-moz-placeholder {
     height: 100vh;
     max-height: 100vh;
   }
+
+  
 
   .form-register,
   .reset-form {
@@ -1608,6 +1593,8 @@ input::-moz-placeholder {
     height: 100vh;
     max-height: 100vh;
   }
+
+  
 
   .form-register,
   .reset-form {
