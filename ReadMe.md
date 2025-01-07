@@ -3,17 +3,14 @@
 Welcome to **SITEWISE**, your premier destination for exquisite living room and recliner chairs. Designed with elegance, comfort, and functionality in mind, SITEWISE offers an unparalleled online shopping experience.
 
 ## 🚀 Features
-- **Luxury Living Room Chairs:** Explore a curated selection of premium living room chairs.
+- **Luxury Living Room Chairs:** Explore a curated selection of premium chairs.
 - **Elegant Recliner Chairs:** Discover top-quality recliners for ultimate comfort.
 - **User-Friendly Interface:** Seamless browsing and shopping experience.
 - **Responsive Design:** Optimized for both desktop and mobile devices.
-- **Secure Payments:** Multiple payment gateways ensuring a secure checkout process.
+- **Secure Payments:** Multiple payment gateways ensure a secure checkout process.
 
 ## 🛠️ Tech Stack
 - **Frontend:** HTML5, CSS3, JavaScript
-- **Backend:** Node.js with Express
-- **Database:** MongoDB
-- **Design Tool:** Figma
 - **Deployment:** (https://seatwise.netlify.app/)
 
 ## 📦 Installation
