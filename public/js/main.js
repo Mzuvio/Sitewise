@@ -377,7 +377,7 @@ let reloadCheckout = () => {
 
   vat.textContent = `R${vatPrice.toFixed(2)}`;
   subtotal.textContent = `R${cartItemSubtotal.toFixed(2)}`;
-  overallTotal.textContent = `${totalPrice.toFixed(2)}`;
+  overallTotal.textContent = `R${totalPrice.toFixed(2)}`;
 };
 
 // RENDER TO CART
