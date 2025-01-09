@@ -157,9 +157,9 @@
   },
   {
     "id": 13,
-    "image": "public/images/chair_23.png",
+    "image": "public/images/chair-23.png",
     "category": "Classic",
-    "name": "Carlyle Classic Chair",
+    "name": "Chair Rubautelli",
     "basePrice": 18000.99,
     "price": "R18,000.99",
     "sale": false,
@@ -171,9 +171,9 @@
 
   {
     "id": 14,
-    "image": "public/images/chair_21.png",
+    "image": "public/images/chair-21.png",
     "category": "Modern",
-    "name": "Cultivated Armchair",
+    "name": "Swivel Chair Daigo", 
     "basePrice": 25000.99,
     "price": "R25,000.99",
     "sale": false,
@@ -184,9 +184,9 @@
   },
   {
     "id": 15,
-    "image": "public/images/chair_22.png",
+    "image": "public/images/chair-22.png",
     "category": "Contemporary",
-    "name": "Champagne Lounge Chair",
+    "name": "Dolce Occasional Chair",
     "basePrice": 21000.99,
     "price": "R21,000.99",
     "sale": false,
@@ -198,11 +198,11 @@
 
   {
     "id": 16,
-    "image": "public/images/chair_24.png",
+    "image": "public/images/chair-24.png",
     "category": "Scandinavian",
-    "name": "Cameo Nordic Chair",
-    "basePrice": 18000.99,
-    "price": "R18,000.99",
+    "name": "Chair Allison",
+    "basePrice": 26545.99,
+    "price": "R26,545.99",
     "sale": true,
     "categoryType": "Featured",
     "icon": "bag-outline",
