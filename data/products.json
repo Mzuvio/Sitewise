@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "public/images/chair_1.png",
+    "image": "public/images/chair_1.webp",
     "category": "Modern",
     "name": "Velvet Lounge Chair",
     "basePrice": 4500.99,
@@ -14,7 +14,7 @@
   },
   {
     "id": 2,
-    "image": "public/images/chair_2.png",
+    "image": "public/images/chair_2.webp",
     "category": "Classic",
     "name": "Leather Recliner",
     "basePrice": 12000.99,
@@ -27,7 +27,7 @@
   },
   {
     "id": 3,
-    "image": "public/images/chair_19.png",
+    "image": "public/images/chair_19.webp",
     "category": "Ergonomic",
     "name": "Ergonomic Office Chair",
     "basePrice": 7000.99,
@@ -40,7 +40,7 @@
   },
   {
     "id": 4,
-    "image": "public/images/chair_3.png",
+    "image": "public/images/chair_3.webp",
     "category": "Modern",
     "name": "Modern Accent Chair",
     "basePrice": 3500.99,
@@ -53,7 +53,7 @@
   },
   {
     "id": 5,
-    "image": "public/images/chair_4.png",
+    "image": "public/images/chair_4.webp",
     "category": "Scandinavian",
     "name": "High-Back Executive Chair",
     "basePrice": 6000.99,
@@ -66,7 +66,7 @@
   },
   {
     "id": 6,
-    "image": "public/images/chair_5.png",
+    "image": "public/images/chair_5.webp",
     "category": "Modern",
     "name": "Wingback Armchair",
     "basePrice": 5500.99,
@@ -79,7 +79,7 @@
   },
   {
     "id": 7,
-    "image": "public/images/chair_7.png",
+    "image": "public/images/chair_7.webp",
     "category": "Classic",
     "name": "Antique Wooden Chair",
     "basePrice": 10000.99,
@@ -92,7 +92,7 @@
   },
   {
     "id": 8,
-    "image": "public/images/chair_20.png",
+    "image": "public/images/chair_20.webp",
     "category": "Minimalist",
     "name": "Minimalist Wooden Stool",
     "basePrice": 2000.99,
@@ -105,7 +105,7 @@
   },
   {
     "id": 9,
-    "image": "public/images/chair_9.png",
+    "image": "public/images/chair_9.webp",
     "category": "Classic",
     "name": "Contemporary Lounge Chair",
     "basePrice": 8000.99,
@@ -118,7 +118,7 @@
   },
   {
     "id": 10,
-    "image": "public/images/chair_10.png",
+    "image": "public/images/chair_10.webp",
     "category": "Scandinavian",
     "name": "Fabric Swivel Chair",
     "basePrice": 3750.99,
@@ -131,7 +131,7 @@
   },
   {
     "id": 11,
-    "image": "public/images/chair_17.png",
+    "image": "public/images/chair_17.webp",
     "category": "Classic",
     "name": "Classic Rocking Chair",
     "basePrice": 4500.99,
@@ -144,7 +144,7 @@
   },
   {
     "id": 12,
-    "image": "public/images/chair_18.png",
+    "image": "public/images/chair_18.webp",
     "category": "Minimalist",
     "name": "Rustic Patio Chair",
     "basePrice": 3000.99,
@@ -157,7 +157,7 @@
   },
   {
     "id": 13,
-    "image": "public/images/chair-23.png",
+    "image": "public/images/chair-23.webp",
     "category": "Classic",
     "name": "Chair Rubautelli",
     "basePrice": 18000.99,
@@ -171,7 +171,7 @@
 
   {
     "id": 14,
-    "image": "public/images/chair-21.png",
+    "image": "public/images/chair-21.webp",
     "category": "Modern",
     "name": "Swivel Chair Daigo", 
     "basePrice": 25000.99,
@@ -184,7 +184,7 @@
   },
   {
     "id": 15,
-    "image": "public/images/chair-22.png",
+    "image": "public/images/chair-22.webp",
     "category": "Contemporary",
     "name": "Dolce Occasional Chair",
     "basePrice": 21000.99,
@@ -198,7 +198,7 @@
 
   {
     "id": 16,
-    "image": "public/images/chair-24.png",
+    "image": "public/images/chair-24.webp",
     "category": "Scandinavian",
     "name": "Chair Allison",
     "basePrice": 26545.99,

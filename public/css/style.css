@@ -34,7 +34,7 @@
 
   --fs-lg: 46px;
   --fs-medium: 2rem;
-  --fs-xsml:1.125rem
+  --fs-xsml: 1.125rem;
   --fs-sml: 0.875rem;
   --fs-xsml: 0.75rem;
 
@@ -127,7 +127,7 @@ img {
   right: 30px;
   cursor: pointer;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  z-index: 99;
+  z-index: 10;
 }
 
 .back-top a {
@@ -437,7 +437,6 @@ img {
     font-size: 2rem;
   }
 
-
   .nav-menu .menu-link {
     display: block;
     width: 100%;
@@ -710,7 +709,7 @@ img {
   height: calc(100vh - 118px);
   max-height: calc(100vh - 118px);
   margin-top: 118px;
-  background-image: url("../images/showcase-1.jpg");
+  background-image: url("../images/showcase-1.webp");
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1571,7 +1570,6 @@ input::-moz-placeholder {
   .reset-form {
     width: 390px;
   }
-
 }
 
 @media screen and (min-width: 360px) and (max-width: 375px) {
@@ -1580,8 +1578,6 @@ input::-moz-placeholder {
     height: 100vh;
     max-height: 100vh;
   }
-
-  
 
   .form-register,
   .reset-form {
@@ -1594,8 +1590,6 @@ input::-moz-placeholder {
     height: 100vh;
     max-height: 100vh;
   }
-
-  
 
   .form-register,
   .reset-form {
@@ -1635,12 +1629,12 @@ input::-moz-placeholder {
 
 .featured-section .card-item:nth-child(1) .card {
   height: 100%;
-  background-image: url("../images/chair_8.png");
+  background-image: url("../images/chair_8.webp");
   background-size: 300px;
 }
 
 .featured-section .card-item:nth-child(2) .card {
-  background-image: url("../images/chair_12.png");
+  background-image: url("../images/chair_12.webp");
   background-size: 180px;
 }
 
@@ -1649,7 +1643,7 @@ input::-moz-placeholder {
 }
 
 .featured-section .card-item:nth-child(3) .card {
-  background-image: url("../images/chair_13.png");
+  background-image: url("../images/chair_13.webp");
   background-size: 180px;
 }
 
@@ -1658,7 +1652,7 @@ input::-moz-placeholder {
 }
 
 .featured-section .card-item:nth-child(4) .card {
-  background-image: url("../images/chair_14.png");
+  background-image: url("../images/chair_14.webp");
   background-size: 180px;
 }
 
@@ -1667,7 +1661,7 @@ input::-moz-placeholder {
 }
 
 .featured-section .card-item:nth-child(5) .card {
-  background-image: url("../images/chair_20.png");
+  background-image: url("../images/chair_20.webp");
   background-size: 180px;
 }
 
@@ -1983,7 +1977,7 @@ input::-moz-placeholder {
   position: relative;
 }
 .banner-section .banner-left-cl {
-  background-image: url("../images/banner6.jpg");
+  background-image: url("../images/banner6.webp");
 }
 
 .banner-section .banner-content {
@@ -2034,7 +2028,7 @@ input::-moz-placeholder {
 }
 
 .banner-section .banner-right-cl {
-  background-image: url("../images/banner4.jpg");
+  background-image: url("../images/banner4.webp");
 }
 
 .banner-section .banner-right-cl::after {
@@ -2312,7 +2306,7 @@ input::-moz-placeholder {
 .product-details .product-category {
   color: grey;
   display: inline-flex;
-  font-size: var(--fs-sml);
+  font-size: var(--fs-xsml);
   font-weight: var(--fw-normal);
 }
 
@@ -4246,7 +4240,7 @@ input::-moz-placeholder {
   margin-top: 118px;
   display: grid;
   place-content: center;
-  background-image: url("../images/breadcrumb-1.jpg");
+  background-image: url("../images/breadcrumb-1.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -4296,8 +4290,6 @@ input::-moz-placeholder {
     max-height: calc(100vh - 768px);
   }
 }
-
-
 
 /* MAIN CONTAINER */
 
@@ -4351,11 +4343,11 @@ input::-moz-placeholder {
 }
 
 .price-list.sidebar-filter li:hover {
-  background-color: #fcf7f8;
+  background-color: var(--light-grey);
 }
 
 .price-list.sidebar-filter .active {
-  background-color: #fcf7f8;
+  background-color: var(--light-grey);
 }
 
 .custom-label {
@@ -5010,7 +5002,7 @@ input::-moz-placeholder {
   padding-inline: 2rem;
   justify-content: end;
   align-items: center;
-  background-image: url("../images/showcase-7.jpg");
+  background-image: url("../images/showcase-7.webp");
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -5030,7 +5022,7 @@ input::-moz-placeholder {
 
 .shop-info .content-wrapper {
   width: 40%;
-  z-index: 99;
+  z-index: 8;
   display: flex;
   justify-content: center;
   align-content: center;
