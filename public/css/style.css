@@ -707,9 +707,9 @@ img {
 
 .showcase-section {
   width: 100%;
-  height: calc(100vh - 121px);
-  max-height: calc(100vh - 121px);
-  margin-top: 121px;
+  height: calc(100vh - 118px);
+  max-height: calc(100vh - 118px);
+  margin-top: 118px;
   background-image: url("../images/showcase-1.jpg");
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -2311,8 +2311,9 @@ input::-moz-placeholder {
 
 .product-details .product-category {
   color: grey;
+  display: inline-flex;
   font-size: var(--fs-sml);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
 }
 
 .product-details .product-favorite {
@@ -4242,7 +4243,7 @@ input::-moz-placeholder {
   width: 100%;
   height: calc(100vh - 500px);
   max-height: calc(100vh - 500px);
-  margin-top: 120px;
+  margin-top: 118px;
   display: grid;
   place-content: center;
   background-image: url("../images/breadcrumb-1.jpg");
@@ -4569,8 +4570,8 @@ input::-moz-placeholder {
   padding-top: 0.625rem;
   color: grey;
   display: inline-flex;
-  font-size: var(--fs-sml);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-xsml);
+  font-weight: var(--fw-normal);
 }
 
 .chairs-display .product-name {
@@ -4669,8 +4670,8 @@ input::-moz-placeholder {
     padding-top: 0.625rem;
     color: grey;
     display: inline-flex;
-    font-size: var(--fs-sml);
-    font-weight: var(--fw-medium);
+    font-size: var(--fs-xsml);
+    font-weight: var(--fw-normal);
   }
 
   .chairs-display .product-name {
