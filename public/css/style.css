@@ -3750,10 +3750,17 @@ input::-moz-placeholder {
     font-size: 1.25rem;
   }
 
-  .form-controller input[type="email"] {
+  .newsletter .controller-container {
+    flex-direction: column;
     width: 100%;
-    font-family: "Jost", sans-serif;
-    border: 1px solid var(--grey-clr);
+  }
+
+  .newsletter .form-controller {
+    width: 100%;
+  }
+
+  .newsletter .form-controller input {
+    width: 100%;
   }
 }
 
@@ -3766,10 +3773,17 @@ input::-moz-placeholder {
     font-size: 1.25rem;
   }
 
-  .form-controller input[type="email"] {
+  .newsletter .controller-container {
+    flex-direction: column;
     width: 100%;
-    font-family: "Jost", sans-serif;
-    border: 1px solid var(--grey-clr);
+  }
+
+  .newsletter .form-controller {
+    width: 100%;
+  }
+
+  .newsletter .form-controller input {
+    width: 100%;
   }
 }
 @media screen and (max-width: 360px) {
@@ -3781,10 +3795,17 @@ input::-moz-placeholder {
     font-size: 1.25rem;
   }
 
-  .form-controller input[type="email"] {
+  .newsletter .controller-container {
+    flex-direction: column;
     width: 100%;
-    font-family: "Jost", sans-serif;
-    border: 1px solid var(--grey-clr);
+  }
+
+  .newsletter .form-controller {
+    width: 100%;
+  }
+
+  .newsletter .form-controller input {
+    width: 100%;
   }
 }
 
@@ -5108,7 +5129,7 @@ input::-moz-placeholder {
   }
 
   .about-section .image-card {
-    display: none;
+    display: block;
   }
 
   .about-rection .right-cl {
