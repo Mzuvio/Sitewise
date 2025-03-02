@@ -246,6 +246,7 @@ img {
   top: 100px;
   opacity: 1;
 }
+
 @media screen and (max-width: 768px) {
   .cart-notification {
     padding: 0.5rem 0.75rem;
@@ -1703,6 +1704,20 @@ input::-moz-placeholder {
   margin-bottom: 0.75rem;
   display: inline-block;
   line-height: var(--line-height);
+}
+
+@media screen and (min-width: 1025px) {
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -3374,6 +3389,12 @@ input::-moz-placeholder {
 
 .promotion-wrapper .image-card {
   width: 300px;
+}
+
+@media screen and (min-width: 1025px) {
+  .promotion-wrapper {
+  padding-inline: 3rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
