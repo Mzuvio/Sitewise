@@ -1,0 +1,11 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./",
+      "url": ["https://Mzuvio.github.io/Sitewise/"]
+    },
+    "assert": {
+      "preset": "lighthouse:recommended"
+    }
+  }
+}
